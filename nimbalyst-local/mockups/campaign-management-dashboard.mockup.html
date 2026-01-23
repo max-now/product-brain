@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaign Management Dashboard - Phase 1 Performance Levers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F4F4F4;
+            color: #1A1A1A;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .page-title-section h1 {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 32px;
+            color: #1A1A1A;
+            margin-bottom: 4px;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #767676;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background: #5046C5;
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background: #6259CB;
+        }
+
+        .dashboard-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #E8E8E8;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 16px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: #767676;
+            cursor: pointer;
+            margin-bottom: -2px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .tab.active {
+            color: #5046C5;
+            border-bottom-color: #5046C5;
+        }
+
+        .tab:hover {
+            color: #5046C5;
+        }
+
+        .tab-badge {
+            display: inline-block;
+            background: #E8E8E8;
+            color: #484848;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+
+        .tab.active .tab-badge {
+            background: #EDECF9;
+            color: #5046C5;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-input {
+            padding: 10px 12px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            border: 1px solid #D1D1D1;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            color: #1A1A1A;
+            min-width: 200px;
+        }
+
+        .filter-input:focus {
+            outline: none;
+            border-color: #5046C5;
+        }
+
+        .filter-select {
+            padding: 10px 12px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            border: 1px solid #D1D1D1;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            color: #1A1A1A;
+            min-width: 180px;
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #F4F4F4;
+        }
+
+        th {
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 16px;
+            color: #484848;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        th.sortable {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        th.sortable:hover {
+            color: #1A1A1A;
+        }
+
+        th.sortable::after {
+            content: ' ↕';
+            opacity: 0.3;
+        }
+
+        td {
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        tbody tr:hover {
+            background: #F4F4F4;
+        }
+
+        .merchant-name {
+            font-weight: 500;
+            color: #1A1A1A;
+            margin-bottom: 2px;
+        }
+
+        .merchant-id {
+            font-size: 12px;
+            color: #767676;
+        }
+
+        .placement-badge {
+            display: inline-block;
+            background: #EDECF9;
+            color: #5046C5;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+
+        .placement-count {
+            display: inline-block;
+            background: #D1D1D1;
+            color: #484848;
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #E6F6EF;
+            color: #0C6D44;
+        }
+
+        .status-scheduled {
+            background: #E9EFFA;
+            color: #204787;
+        }
+
+        .status-expired {
+            background: #E8E8E8;
+            color: #484848;
+        }
+
+        .actions-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .actions-button {
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #5046C5;
+            background: transparent;
+            border: 1px solid #D1D1D1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .actions-button:hover {
+            background: #F6F6FC;
+            border-color: #5046C5;
+        }
+
+        .checkbox-cell {
+            width: 40px;
+        }
+
+        .checkbox-input {
+            width: 18px;
+            height: 18px;
+            border: 1px solid #D1D1D1;
+            border-radius: 4px;
+            cursor: pointer;
+            accent-color: #5046C5;
+        }
+
+        .bulk-actions {
+            display: flex;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #F6F6FC;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            align-items: center;
+        }
+
+        .bulk-actions-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #484848;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-danger {
+            background: #DB4C40;
+            color: #FFFFFF;
+        }
+
+        .btn-danger:hover {
+            background: #DF5E53;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <div class="page-title-section">
+                <h1>Campaign Management</h1>
+                <p class="page-subtitle">Manage time-bound merchant ranking campaigns across placements</p>
+            </div>
+            <button class="btn btn-primary">+ Create Campaign</button>
+        </div>
+
+        <div class="dashboard-card">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active">
+                    Active
+                    <span class="tab-badge">3</span>
+                </button>
+                <button class="tab">
+                    Scheduled
+                    <span class="tab-badge">5</span>
+                </button>
+                <button class="tab">
+                    Expired
+                    <span class="tab-badge">12</span>
+                </button>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <input type="text" class="filter-input" placeholder="Search merchant...">
+                <select class="filter-select">
+                    <option value="">All Placements</option>
+                    <option value="earn-popular">Earn Home → Popular</option>
+                    <option value="earn-deals">Earn Home → Deals</option>
+                    <option value="deals-calendar">Deals Calendar</option>
+                </select>
+                <input type="date" class="filter-input" placeholder="Start date">
+                <input type="date" class="filter-input" placeholder="End date">
+                <select class="filter-select">
+                    <option value="">All Users</option>
+                    <option value="user1">Sarah Chen</option>
+                    <option value="user2">David Wang</option>
+                    <option value="user3">Maria Garcia</option>
+                </select>
+            </div>
+
+            <!-- Bulk Actions -->
+            <div class="bulk-actions">
+                <input type="checkbox" class="checkbox-input">
+                <span class="bulk-actions-text">2 campaigns selected</span>
+                <button class="btn-small btn-danger">Cancel Selected</button>
+            </div>
+
+            <!-- Table -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="checkbox-cell"><input type="checkbox" class="checkbox-input"></th>
+                            <th class="sortable">Merchant</th>
+                            <th>Placements</th>
+                            <th class="sortable">Start Date</th>
+                            <th class="sortable">End Date</th>
+                            <th class="sortable">Status</th>
+                            <th class="sortable">Created By</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="checkbox-cell"><input type="checkbox" class="checkbox-input" checked></td>
+                            <td>
+                                <div class="merchant-name">Singapore Airlines</div>
+                                <div class="merchant-id">ID: 12345</div>
+                            </td>
+                            <td>
+                                <span class="placement-badge">Earn → Popular</span>
+                                <span class="placement-badge">Earn → Deals</span>
+                            </td>
+                            <td>2026-01-20 09:00</td>
+                            <td>2026-02-03 23:59</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>Sarah Chen</td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button">Actions ▼</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="checkbox-cell"><input type="checkbox" class="checkbox-input" checked></td>
+                            <td>
+                                <div class="merchant-name">Shopee</div>
+                                <div class="merchant-id">ID: 67890</div>
+                            </td>
+                            <td>
+                                <span class="placement-badge">Deals Calendar</span>
+                            </td>
+                            <td>2026-01-18 00:00</td>
+                            <td>2026-01-31 23:59</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>David Wang</td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button">Actions ▼</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="checkbox-cell"><input type="checkbox" class="checkbox-input"></td>
+                            <td>
+                                <div class="merchant-name">Grab</div>
+                                <div class="merchant-id">ID: 11223</div>
+                            </td>
+                            <td>
+                                <span class="placement-badge">Earn → Popular</span>
+                                <span class="placement-count">+2</span>
+                            </td>
+                            <td>2026-01-15 12:00</td>
+                            <td>2026-01-28 23:59</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>Sarah Chen</td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button">Actions ▼</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -10,7 +10,7 @@
 - **Pain/Value Intensity:** How severe is the problem or valuable is the solution?
 
 | Score | User Base | Frequency | Pain/Value Level | Example |
-|-------|-----------|-----------|------------------|---------|
+| --- | --- | --- | --- | --- |
 | **5** | Most users (70%+) | Daily/Multiple times per day | High pain or high value creation | Core workflow bottleneck affecting all users |
 | **4** | Many users (40-70%) | Weekly/Several times per week | Moderate-high pain or value | Important feature that's hard to use |
 | **3** | Some users (20-40%) | Monthly/Several times per month | Moderate pain or value | Nice-to-have improvement |
@@ -33,7 +33,7 @@
 - **Industry Trends:** Low weight (contextual support)
 
 | Score | Evidence Strength | Example Evidence Combination |
-|-------|-------------------|----------------------------|
+| --- | --- | --- |
 | **5** | Multiple strong sources align | User research + usage data + customer feedback all point to same problem |
 | **4** | 2+ strong sources + supporting evidence | Usage data shows drop-off + user interviews confirm friction |
 | **3** | 1-2 strong sources | Clear usage data OR comprehensive user research |
@@ -54,7 +54,7 @@
 - Can we articulate a theory of change?
 
 | Score | Solution Clarity | Team Confidence | Example |
-|-------|------------------|-----------------|---------|
+| --- | --- | --- | --- |
 | **5** | Very clear path forward | Team consensus on approach | "Add search + improve navigation + feature highlights" |
 | **4** | Clear direction with options | General agreement, some debate on tactics | "Simplify onboarding but unclear if guided tour vs. progressive disclosure" |
 | **3** | Directional but needs exploration | Mixed opinions, need experimentation | "Improve performance but unclear if technical vs. UX solutions" |
@@ -76,7 +76,7 @@
 - **Process:** Operational advantages or efficiencies
 
 | Score | Competitive Advantage | Differentiation Potential | Example |
-|-------|----------------------|---------------------------|---------|
+| --- | --- | --- | --- |
 | **5** | Strong structural advantages | Competitors can't easily replicate | Unique data set + brand trust in vertical |
 | **4** | Clear advantages | Difficult for competitors to match | Strong design team + user research capability |
 | **3** | Some advantages | Can differentiate through execution | Good engineering team but others could catch up |
@@ -92,7 +92,7 @@
 ### Complete Pillar Scoring Example
 
 | Strategic Pillar | Expected Impact | Certainty | Clarity of Levers | Uniqueness | Total | Selection Rationale |
-|------------------|------------------|-----------|-------------------|------------|-------|-------------------|
+| --- | --- | --- | --- | --- | --- | --- |
 | **Discovery & Findability** | 5 | 4 | 4 | 3 | **16** | High user pain, strong evidence, clear solutions, design advantage |
 | **Onboarding & Activation** | 4 | 4 | 4 | 3 | **15** | Business critical, proven problem, known solutions, UX strength |
 | **Platform & Extensibility** | 3 | 3 | 4 | 4 | **14** | Enterprise growth, good tech advantage, clear roadmap |

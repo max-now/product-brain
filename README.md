@@ -1,7 +1,5 @@
 # 🧠 PM Brain-as-Code
 
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/) [![GitHub stars](https://img.shields.io/github/stars/andreaskelm/pm-brain?style=social)](https://github.com/andreaskelm/pm-brain) [![GitHub forks](https://img.shields.io/github/forks/andreaskelm/pm-brain?style=social)](https://github.com/andreaskelm/pm-brain/fork)
-
 > **Your external product management brain. Single source of truth = latest commit.**
 
 A living knowledge base that bridges the gap between Product Management frameworks and actual operational execution. Git-versioned, shareable, ready to use.
@@ -35,52 +33,52 @@ A living knowledge base that bridges the gap between Product Management framewor
 **Best for:** ChatGPT, Claude, Gemini, Microsoft Copilot, or other chat-based AI tools.
 
 1. **Browse** to the folder you need:
-   - `01-Company-Context/` – for company strategy, vision, stakeholders
-   - `02-Methods-and-Tools/` – for frameworks, guides, templates, playbooks
-   - `03-Research-Artifacts/` – for research storage structure
-   - `04-Initiatives/` – for opportunity assessments and initiative planning
+  - `01-Company-Context/` – for company strategy, vision, stakeholders
+  - `02-Methods-and-Tools/` – for frameworks, guides, templates, playbooks
+  - `03-Research-Artifacts/` – for research storage structure
+  - `04-Initiatives/` – for opportunity assessments and initiative planning
 
 2. **Before using templates: Braindump first**
-   - Don't jump straight to filling templates. Start by dumping your thoughts, ideas, and concerns.
-   - Use the braindumping prompts in each framework to capture your raw thinking first.
-   - Let your product sense and intuition guide initial thoughts before structuring them.
+  - Don't jump straight to filling templates. Start by dumping your thoughts, ideas, and concerns.
+  - Use the braindumping prompts in each framework to capture your raw thinking first.
+  - Let your product sense and intuition guide initial thoughts before structuring them.
 
 3. **Copy** the relevant README + template files.
 
 4. **Paste** into your AI chat session with a prompt like:
-   ```
+```
    Here's the structure I use for [product strategy / PRDs / OKRs / etc.].
    
    First, help me braindump my thoughts on [topic]. Quiz me, challenge my assumptions, and help me think through this before we structure it.
    
    Then help me fill it out / adapt it for [my context].
-   ```
+```
 4. **Save for reuse** (recommended):
-   - Upload files to your AI tool's project feature (ChatGPT's "My GPTs", Claude's "Projects", etc.)
-   - Or save the conversation for future reference
-   - Reuse templates without re-copying each time
+  - Upload files to your AI tool's project feature (ChatGPT's "My GPTs", Claude's "Projects", etc.)
+  - Or save the conversation for future reference
+  - Reuse templates without re-copying each time
 
 ### Option 2: Technical (Clone & Use with IDE AI Tools)
 
 **Best for:** GitHub users with VS Code, Cursor, GitHub Copilot, Replit, or similar IDE AI tools.
 
 1. **Clone** the repo:
-   ```bash
+```bash
    git clone https://github.com/andreaskelm/pm-brain.git
    cd pm-brain
-   ```
+```
 
 2. **Plug in your context:**
-   - Replace placeholders in `01-Company-Context/` with your actual vision, strategy, principles
-   - Customize templates in `02-Methods-and-Tools/` for your workflows
+  - Replace placeholders in `01-Company-Context/` with your actual vision, strategy, principles
+  - Customize templates in `02-Methods-and-Tools/` for your workflows
 
 3. **Start using (think first, structure second):**
-   - **Braindump before structuring**: Use the braindumping prompts in each framework to capture your raw thoughts first
-   - **Develop product sense**: Use the product sense exercises and reflection prompts to build judgment
-   - **Think critically**: Let frameworks guide your thinking, not replace it. Answer the quiz questions honestly.
-   - Use frameworks and guides in `02-Methods-and-Tools/` for daily work
-   - Store research in `03-Research-Artifacts/`
-   - Document initiatives in `04-Initiatives/`
+  - **Braindump before structuring**: Use the braindumping prompts in each framework to capture your raw thoughts first
+  - **Develop product sense**: Use the product sense exercises and reflection prompts to build judgment
+  - **Think critically**: Let frameworks guide your thinking, not replace it. Answer the quiz questions honestly.
+  - Use frameworks and guides in `02-Methods-and-Tools/` for daily work
+  - Store research in `03-Research-Artifacts/`
+  - Document initiatives in `04-Initiatives/`
 
 4. **Optional:** Point your IDE's AI tools at this repo as project context.
 
@@ -256,7 +254,7 @@ When contributing:
 
 ## 📚 Credits & Attributions
 
-This repository builds on frameworks from product management thought leaders. See [`CREDITS.md`](./CREDITS.md) for full attributions and ways to support the original creators.
+This repository builds on frameworks from product management thought leaders. See [CREDITS.md](./CREDITS.md) for full attributions and ways to support the original creators.
 
 ---
 

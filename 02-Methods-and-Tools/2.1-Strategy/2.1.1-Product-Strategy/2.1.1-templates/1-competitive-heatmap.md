@@ -5,17 +5,17 @@
 #### Competitor Identification Matrix
 
 | Category | Company | Reasoning | Direct/Indirect |
-|----------|---------|-----------|-----------------|
+| --- | --- | --- | --- |
 | **Direct Competitors** | [Company A] | Targets same users with similar solution | Direct |
-| | [Company B] | Similar feature set, overlapping market | Direct |
+|  | [Company B] | Similar feature set, overlapping market | Direct |
 | **Indirect Competitors** | [Company C] | Different approach, same user problem | Indirect |
 | **Comparables** | [Company D] | Similar business model, different vertical | Comparable |
-| | [Company E] | Analogous user experience in different domain | Comparable |
+|  | [Company E] | Analogous user experience in different domain | Comparable |
 
 #### Detailed Competitive Heatmap
 
 | Capability | Weight | Us | Competitor A | Competitor B | Comparable X | Evidence & Notes |
-|------------|--------|----|--------------|--------------|--------------|--------------------|
+| --- | --- | --- | --- | --- | --- | --- |
 | **Core Feature Set** | High | 🟡 3 | 🟢 4 | 🔴 2 | 🟢 4 | Us: Missing advanced analytics. A: Comprehensive but complex UI. B: Basic feature set. X: Great feature depth. |
 | **User Experience** | High | 🟢 4 | 🟡 3 | 🟡 3 | 🟢 4 | Us: Clean, intuitive design. A: Powerful but learning curve. B: Outdated interface. X: Excellent onboarding. |
 | **Technical Performance** | Medium | 🟡 3 | 🟢 4 | 🔴 2 | 🟡 3 | Us: Good speed, occasional outages. A: Very reliable. B: Frequent downtime. X: Average performance. |
@@ -31,7 +31,7 @@
 #### Investment Themes Analysis
 
 | Competitor | Primary Investment Theme | Evidence | Strategic Implication |
-|------------|-------------------------|----------|----------------------|
+| --- | --- | --- | --- |
 | **Competitor A** | AI/ML automation | Recent blog posts, job postings, feature releases | They're betting on reducing manual work |
 | **Competitor B** | Market expansion | New geographic launches, localization efforts | They're focusing on growth over features |
 | **Comparable X** | Enterprise features | Security certifications, admin tools, enterprise pricing | They see enterprise as growth driver |
@@ -53,7 +53,7 @@
 #### Market Positioning Analysis
 
 | Player | Core Message | Target Customer | Positioning Strategy |
-|--------|-------------|-----------------|---------------------|
+| --- | --- | --- | --- |
 | **Us** | "Simple, powerful [product category]" | SMB to Mid-Market | Ease of use + functionality balance |
 | **Competitor A** | "Enterprise-grade [product category]" | Large Enterprise | Feature completeness + reliability |
 | **Competitor B** | "Affordable [product category] for everyone" | SMB + Individual | Price leadership |
@@ -65,40 +65,40 @@
 **Areas where others have insurmountable advantages:**
 
 1. **Enterprise Feature Completeness** (vs. Competitor A)
-   - **Their advantage:** 3+ years head start, dedicated enterprise team
-   - **Our reality:** Small team, SMB focus
-   - **Implication:** Don't try to out-enterprise them
+  - **Their advantage:** 3+ years head start, dedicated enterprise team
+  - **Our reality:** Small team, SMB focus
+  - **Implication:** Don't try to out-enterprise them
 
 2. **Price Competition** (vs. Competitor B)  
-   - **Their advantage:** Lower-cost business model, simpler product
-   - **Our reality:** Higher operational costs, more sophisticated features
-   - **Implication:** Compete on value, not price
+  - **Their advantage:** Lower-cost business model, simpler product
+  - **Our reality:** Higher operational costs, more sophisticated features
+  - **Implication:** Compete on value, not price
 
 #### Where WE Differentiate
 **Our unique strengths and advantages:**
 
 1. **User Experience Design**
-   - **Advantage:** Design-first culture, user research investment
-   - **Evidence:** Higher NPS scores, lower support ticket volume
-   - **Strategic leverage:** Can charge premium for better experience
+  - **Advantage:** Design-first culture, user research investment
+  - **Evidence:** Higher NPS scores, lower support ticket volume
+  - **Strategic leverage:** Can charge premium for better experience
 
 2. **Implementation Speed**
-   - **Advantage:** Smaller team, faster decision-making
-   - **Evidence:** Feature release velocity 2x competitors
-   - **Strategic leverage:** Can respond to market changes quickly
+  - **Advantage:** Smaller team, faster decision-making
+  - **Evidence:** Feature release velocity 2x competitors
+  - **Strategic leverage:** Can respond to market changes quickly
 
 #### White Space Opportunities  
 **Unmet needs no one is addressing well:**
 
 1. **Mid-Market Integration Needs**
-   - **Gap:** Enterprise tools too complex, SMB tools too basic
-   - **Opportunity:** Right-sized integration platform
-   - **Evidence:** Customer interviews, support requests
+  - **Gap:** Enterprise tools too complex, SMB tools too basic
+  - **Opportunity:** Right-sized integration platform
+  - **Evidence:** Customer interviews, support requests
 
 2. **Mobile-First Experience**
-   - **Gap:** All competitors built desktop-first
-   - **Opportunity:** Native mobile experience
-   - **Evidence:** Usage analytics show 40% mobile traffic
+  - **Gap:** All competitors built desktop-first
+  - **Opportunity:** Native mobile experience
+  - **Evidence:** Usage analytics show 40% mobile traffic
 
 ### Competitive Intelligence Gathering
 

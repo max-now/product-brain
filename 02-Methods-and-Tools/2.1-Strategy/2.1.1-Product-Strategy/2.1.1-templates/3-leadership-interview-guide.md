@@ -37,14 +37,14 @@ Best,
 
 **Primary Questions:**
 1. **"If you could fast-forward 2 years and we've had wild success, what does that look like?"**
-   - Follow-up: "What specific behaviors would you see from users/customers?"
-   - Follow-up: "How would our business metrics be different?"
+  - Follow-up: "What specific behaviors would you see from users/customers?"
+  - Follow-up: "How would our business metrics be different?"
 
 2. **"On the flip side, what would failure look like? What keeps you up at night?"**
-   - Follow-up: "What warning signs would tell us we're heading in the wrong direction?"
+  - Follow-up: "What warning signs would tell us we're heading in the wrong direction?"
 
 3. **"What's the most exciting version of our success that you can imagine?"**
-   - Follow-up: "What would have to be true for that to happen?"
+  - Follow-up: "What would have to be true for that to happen?"
 
 **Interviewer Notes:**
 - Capture exact language they use for success/failure
@@ -55,13 +55,13 @@ Best,
 
 **Primary Questions:**
 4. **"What are the most important metrics of success for us?"**
-   - Follow-up: "How would you prioritize these if you had to rank them?"
+  - Follow-up: "How would you prioritize these if you had to rank them?"
 
 5. **"How would you know we're winning against competitors?"**
-   - Follow-up: "What leading indicators would give you confidence we're on track?"
+  - Follow-up: "What leading indicators would give you confidence we're on track?"
 
 6. **"What metrics should we NOT optimize for?"**
-   - Follow-up: "What would be dangerous to focus on?"
+  - Follow-up: "What would be dangerous to focus on?"
 
 **Interviewer Notes:**
 - Distinguish between lagging indicators (revenue) and leading indicators (engagement)
@@ -71,37 +71,37 @@ Best,
 
 **Primary Questions:**
 7. **"What principles should guide our product decisions over the next 2 years?"**
-   - Follow-up: "Can you give me an example of when this principle helped make a tough decision?"
+  - Follow-up: "Can you give me an example of when this principle helped make a tough decision?"
 
 8. **"What should we never compromise on, even under pressure?"**
-   - Follow-up: "How do we maintain this when facing resource constraints?"
+  - Follow-up: "How do we maintain this when facing resource constraints?"
 
 9. **"What makes us unique? What's our secret sauce?"**
-   - Follow-up: "How do we leverage this advantage in our strategy?"
+  - Follow-up: "How do we leverage this advantage in our strategy?"
 
 #### Section 4: Learning from Past (10 minutes)
 
 **Primary Questions:**
 10. **"Why haven't things worked as expected in the past?"**
-    - Follow-up: "What patterns do you see in our misses vs. hits?"
+  - Follow-up: "What patterns do you see in our misses vs. hits?"
 
 11. **"If you could go back and change our approach to product development, what would you do differently?"**
-    - Follow-up: "What did we learn that we can apply going forward?"
+  - Follow-up: "What did we learn that we can apply going forward?"
 
 12. **"What assumptions have we made that turned out to be wrong?"**
-    - Follow-up: "How do we avoid similar blind spots this time?"
+  - Follow-up: "How do we avoid similar blind spots this time?"
 
 #### Section 5: Ideas & Vision (10 minutes)
 
 **Primary Questions:**
 13. **"What ideas are you most excited about that we should consider?"**
-    - Follow-up: "What makes this idea compelling to you?"
+  - Follow-up: "What makes this idea compelling to you?"
 
 14. **"What's your most contrarian view about our space?"**
-    - Follow-up: "Why do you believe this when others might disagree?"
+  - Follow-up: "Why do you believe this when others might disagree?"
 
 15. **"If we had unlimited resources, what would you want us to build?"**
-    - Follow-up: "What's the smallest version of that we could test?"
+  - Follow-up: "What's the smallest version of that we could test?"
 
 **Closing (5 minutes)**
 16. **"What questions should I have asked that I didn't?"**

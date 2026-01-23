@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 2: Placement Performance Scorecard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: #f5f7fa;
+            color: #1a202c;
+            line-height: 1.5;
+        }
+
+        .dashboard {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background: #1a202c;
+            color: white;
+            padding: 24px 0;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            padding: 0 24px 32px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #10b981;
+        }
+
+        .nav-item {
+            padding: 12px 24px;
+            color: #a0aec0;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border-left: 3px solid #10b981;
+        }
+
+        .nav-section {
+            margin-top: 32px;
+            padding: 0 24px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #718096;
+            margin-bottom: 8px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 32px;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .date-selector {
+            padding: 10px 16px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            padding: 10px 20px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .btn-secondary {
+            padding: 10px 20px;
+            background: white;
+            color: #4b5563;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        /* Performance Grid */
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .chart-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a202c;
+        }
+
+        .chart-legend {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        /* Chart Visualization */
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bar-label {
+            width: 140px;
+            font-size: 13px;
+            color: #4b5563;
+            font-weight: 500;
+        }
+
+        .bar-container {
+            flex: 1;
+            display: flex;
+            gap: 4px;
+        }
+
+        .bar {
+            height: 32px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .bar:hover {
+            opacity: 0.9;
+            transform: scaleY(1.05);
+        }
+
+        .bar.ctr {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+
+        .bar.cvr {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .bar.rpm {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+
+        .bar-value {
+            margin-left: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a202c;
+            min-width: 50px;
+        }
+
+        /* Performance Table */
+        .table-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a202c;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .filter-btn {
+            padding: 6px 14px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #f9fafb;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px 24px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+        }
+
+        th:hover {
+            color: #1a202c;
+        }
+
+        td {
+            padding: 16px 24px;
+            border-top: 1px solid #f3f4f6;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        .placement-name {
+            font-weight: 600;
+            color: #1a202c;
+        }
+
+        .metric-value {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .performance-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .performance-indicator.excellent {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .performance-indicator.good {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .performance-indicator.average {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .performance-indicator.poor {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .recommendation-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .recommendation-tag.cpa {
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+        }
+
+        .recommendation-tag.cpc {
+            background: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+        }
+
+        .recommendation-tag.cpi {
+            background: #f5f3ff;
+            color: #6b21a8;
+            border: 1px solid #ddd6fe;
+        }
+
+        .sparkline {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 24px;
+        }
+
+        .sparkline-bar {
+            flex: 1;
+            background: #10b981;
+            border-radius: 2px;
+            min-width: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">HeyMax Analytics</div>
+
+            <div class="nav-section">Phase 1 - Foundation</div>
+            <div class="nav-item">
+                <span>📊</span> Placement Overview
+            </div>
+            <div class="nav-item">
+                <span>🏪</span> Merchant Exposure
+            </div>
+            <div class="nav-item">
+                <span>🔍</span> Placement Deep Dive
+            </div>
+
+            <div class="nav-section">Phase 2 - Intelligence</div>
+            <div class="nav-item active">
+                <span>📈</span> Performance Scorecard
+            </div>
+            <div class="nav-item">
+                <span>🎯</span> Merchant Benchmarking
+            </div>
+            <div class="nav-item">
+                <span>🔄</span> Conversion Paths
+            </div>
+            <div class="nav-item">
+                <span>💡</span> Package Simulator
+            </div>
+
+            <div class="nav-section">Phase 3 - Commercial</div>
+            <div class="nav-item">
+                <span>💼</span> Package Monitor
+            </div>
+            <div class="nav-item">
+                <span>💰</span> Pricing Calculator
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <div>
+                    <h1>Placement Performance Scorecard</h1>
+                    <p style="color: #6b7280; margin-top: 4px;">Analyze CTR, CVR, and revenue efficiency across placements</p>
+                </div>
+                <div class="header-actions">
+                    <div class="date-selector">
+                        📅 Last 30 Days ▼
+                    </div>
+                    <button class="btn-secondary">Compare Periods</button>
+                    <button class="btn-primary">Export Report</button>
+                </div>
+            </div>
+
+            <!-- Performance Charts -->
+            <div class="performance-grid">
+                <!-- CTR Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div class="chart-title">Click-Through Rate (CTR) by Placement</div>
+                    </div>
+                    <div class="bar-chart">
+                        <div class="bar-row">
+                            <div class="bar-label">Home Earn Carousel</div>
+                            <div class="bar-container">
+                                <div class="bar ctr" style="width: 85%;">3.2%</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Search Results</div>
+                            <div class="bar-container">
+                                <div class="bar ctr" style="width: 95%;">4.1%</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Merchant Page Entry</div>
+                            <div class="bar-container">
+                                <div class="bar ctr" style="width: 70%;">2.8%</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Post-Transaction</div>
+                            <div class="bar-container">
+                                <div class="bar ctr" style="width: 45%;">1.6%</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Category Browse</div>
+                            <div class="bar-container">
+                                <div class="bar ctr" style="width: 60%;">2.3%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CVR Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div class="chart-title">Conversion Rate (CVR) by Placement</div>
+                    </div>
+                    <div class="bar-chart">
+                        <div class="bar-row">
+                            <div class="bar-label">Home Earn Carousel</div>
+                            <div class="bar-container">
+                                <div class="bar cvr" style="width: 90%;">4.5%</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Search Results</div>
+                            <div class="bar-container">
+                                <div class="bar cvr" style="width: 100%;">6.2%</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Merchant Page Entry</div>
+                            <div class="bar-container">
+                                <div class="bar cvr" style="width: 75%;">3.8%</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Post-Transaction</div>
+                            <div class="bar-container">
+                                <div class="bar cvr" style="width: 40%;">1.2%</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Category Browse</div>
+                            <div class="bar-container">
+                                <div class="bar cvr" style="width: 55%;">2.7%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RPM Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div class="chart-title">Revenue per 1000 Impressions (RPM)</div>
+                    </div>
+                    <div class="bar-chart">
+                        <div class="bar-row">
+                            <div class="bar-label">Home Earn Carousel</div>
+                            <div class="bar-container">
+                                <div class="bar rpm" style="width: 85%;">£42.30</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Search Results</div>
+                            <div class="bar-container">
+                                <div class="bar rpm" style="width: 100%;">£58.70</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Merchant Page Entry</div>
+                            <div class="bar-container">
+                                <div class="bar rpm" style="width: 70%;">£35.20</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Post-Transaction</div>
+                            <div class="bar-container">
+                                <div class="bar rpm" style="width: 35%;">£14.80</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Category Browse</div>
+                            <div class="bar-container">
+                                <div class="bar rpm" style="width: 55%;">£26.90</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Avg Time to Conversion -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div class="chart-title">Average Time to Conversion (Hours)</div>
+                    </div>
+                    <div class="bar-chart">
+                        <div class="bar-row">
+                            <div class="bar-label">Home Earn Carousel</div>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 60%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">12.4h</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Search Results</div>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 35%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">6.8h</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Merchant Page Entry</div>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 25%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">4.2h</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Post-Transaction</div>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 90%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">28.6h</div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Category Browse</div>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 55%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">10.5h</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Performance Table -->
+            <div class="table-section">
+                <div class="table-header">
+                    <div class="table-title">Detailed Placement Performance</div>
+                    <div class="filter-group">
+                        <button class="filter-btn active">All Placements</button>
+                        <button class="filter-btn">High CVR</button>
+                        <button class="filter-btn">High Intent</button>
+                        <button class="filter-btn">Low Intent</button>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Placement</th>
+                            <th>Impressions</th>
+                            <th>Clicks</th>
+                            <th>CTR ↓</th>
+                            <th>Conversions</th>
+                            <th>CVR</th>
+                            <th>RPM</th>
+                            <th>Performance</th>
+                            <th>Package Fit</th>
+                            <th>Trend</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="placement-name">Search Results</td>
+                            <td>624,891</td>
+                            <td class="metric-value">25,620</td>
+                            <td class="metric-value">4.1%</td>
+                            <td class="metric-value">1,588</td>
+                            <td class="metric-value">6.2%</td>
+                            <td class="metric-value">£58.70</td>
+                            <td><span class="performance-indicator excellent">🔥 Excellent</span></td>
+                            <td><span class="recommendation-tag cpa">CPA Priority</span></td>
+                            <td>
+                                <div class="sparkline">
+                                    <div class="sparkline-bar" style="height: 60%;"></div>
+                                    <div class="sparkline-bar" style="height: 70%;"></div>
+                                    <div class="sparkline-bar" style="height: 65%;"></div>
+                                    <div class="sparkline-bar" style="height: 80%;"></div>
+                                    <div class="sparkline-bar" style="height: 90%;"></div>
+                                    <div class="sparkline-bar" style="height: 95%;"></div>
+                                    <div class="sparkline-bar" style="height: 100%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="placement-name">Home - Earn Carousel</td>
+                            <td>847,234</td>
+                            <td class="metric-value">27,111</td>
+                            <td class="metric-value">3.2%</td>
+                            <td class="metric-value">1,220</td>
+                            <td class="metric-value">4.5%</td>
+                            <td class="metric-value">£42.30</td>
+                            <td><span class="performance-indicator good">✓ Good</span></td>
+                            <td><span class="recommendation-tag cpa">CPA Priority</span></td>
+                            <td>
+                                <div class="sparkline">
+                                    <div class="sparkline-bar" style="height: 70%;"></div>
+                                    <div class="sparkline-bar" style="height: 75%;"></div>
+                                    <div class="sparkline-bar" style="height: 80%;"></div>
+                                    <div class="sparkline-bar" style="height: 85%;"></div>
+                                    <div class="sparkline-bar" style="height: 90%;"></div>
+                                    <div class="sparkline-bar" style="height: 95%;"></div>
+                                    <div class="sparkline-bar" style="height: 100%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="placement-name">Merchant Page Entry</td>
+                            <td>412,567</td>
+                            <td class="metric-value">11,552</td>
+                            <td class="metric-value">2.8%</td>
+                            <td class="metric-value">439</td>
+                            <td class="metric-value">3.8%</td>
+                            <td class="metric-value">£35.20</td>
+                            <td><span class="performance-indicator good">✓ Good</span></td>
+                            <td><span class="recommendation-tag cpc">CPC Candidate</span></td>
+                            <td>
+                                <div class="sparkline">
+                                    <div class="sparkline-bar" style="height: 100%;"></div>
+                                    <div class="sparkline-bar" style="height: 95%;"></div>
+                                    <div class="sparkline-bar" style="height: 90%;"></div>
+                                    <div class="sparkline-bar" style="height: 85%;"></div>
+                                    <div class="sparkline-bar" style="height: 80%;"></div>
+                                    <div class="sparkline-bar" style="height: 75%;"></div>
+                                    <div class="sparkline-bar" style="height: 70%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="placement-name">Category Browse</td>
+                            <td>156,789</td>
+                            <td class="metric-value">3,606</td>
+                            <td class="metric-value">2.3%</td>
+                            <td class="metric-value">97</td>
+                            <td class="metric-value">2.7%</td>
+                            <td class="metric-value">£26.90</td>
+                            <td><span class="performance-indicator average">~ Average</span></td>
+                            <td><span class="recommendation-tag cpc">CPC Candidate</span></td>
+                            <td>
+                                <div class="sparkline">
+                                    <div class="sparkline-bar" style="height: 65%;"></div>
+                                    <div class="sparkline-bar" style="height: 70%;"></div>
+                                    <div class="sparkline-bar" style="height: 68%;"></div>
+                                    <div class="sparkline-bar" style="height: 72%;"></div>
+                                    <div class="sparkline-bar" style="height: 75%;"></div>
+                                    <div class="sparkline-bar" style="height: 78%;"></div>
+                                    <div class="sparkline-bar" style="height: 80%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="placement-name">Post-Transaction Screen</td>
+                            <td>287,345</td>
+                            <td class="metric-value">4,598</td>
+                            <td class="metric-value">1.6%</td>
+                            <td class="metric-value">55</td>
+                            <td class="metric-value">1.2%</td>
+                            <td class="metric-value">£14.80</td>
+                            <td><span class="performance-indicator poor">⚠ Low</span></td>
+                            <td><span class="recommendation-tag cpi">CPI Candidate</span></td>
+                            <td>
+                                <div class="sparkline">
+                                    <div class="sparkline-bar" style="height: 55%;"></div>
+                                    <div class="sparkline-bar" style="height: 50%;"></div>
+                                    <div class="sparkline-bar" style="height: 52%;"></div>
+                                    <div class="sparkline-bar" style="height: 48%;"></div>
+                                    <div class="sparkline-bar" style="height: 50%;"></div>
+                                    <div class="sparkline-bar" style="height: 53%;"></div>
+                                    <div class="sparkline-bar" style="height: 55%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

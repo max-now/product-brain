@@ -51,7 +51,7 @@
 
 ### RACI Matrix
 | Activity | PM | Eng Lead | Design Lead | Data Lead | PMM | UXR |
-|----------|----|---------|-----------|---------|----|-----|
+| --- | --- | --- | --- | --- | --- | --- |
 | Process Facilitation | R/A | C | C | C | C | C |
 | Leadership Interviews | R | I | I | I | C | C |
 | Data Analysis | C | I | I | R/A | I | C |
@@ -114,29 +114,29 @@
 
 **Core Questions:**
 1. **Success/Failure Vision (10 min)**
-   - "What does wild success look like for us in 2 years?"
-   - "What would failure look like? What keeps you up at night?"
-   - *Follow-up*: "What specific behaviors would you see from users/customers?"
+  - "What does wild success look like for us in 2 years?"
+  - "What would failure look like? What keeps you up at night?"
+  - *Follow-up*: "What specific behaviors would you see from users/customers?"
 
 2. **Success Measures (10 min)**
-   - "What are the most important metrics of success?"
-   - "How would you know we're winning vs. competitors?"
-   - *Follow-up*: "What leading indicators would give you confidence?"
+  - "What are the most important metrics of success?"
+  - "How would you know we're winning vs. competitors?"
+  - *Follow-up*: "What leading indicators would give you confidence?"
 
 3. **Guiding Principles (10 min)**
-   - "What principles should guide our product decisions?"
-   - "What should we never compromise on?"
-   - *Follow-up*: "Can you give me an example of when this principle helped make a tough decision?"
+  - "What principles should guide our product decisions?"
+  - "What should we never compromise on?"
+  - *Follow-up*: "Can you give me an example of when this principle helped make a tough decision?"
 
 4. **Learning from Past (10 min)**
-   - "Why haven't things worked as expected in the past?"
-   - "What patterns do you see in our misses vs. hits?"
-   - *Follow-up*: "What would you do differently if you could go back?"
+  - "Why haven't things worked as expected in the past?"
+  - "What patterns do you see in our misses vs. hits?"
+  - *Follow-up*: "What would you do differently if you could go back?"
 
 5. **Pet Ideas & Vision (10 min)**
-   - "What ideas excite you that we should consider?"
-   - "What's your most contrarian view about our space?"
-   - *Follow-up*: "What would have to be true for that to work?"
+  - "What ideas excite you that we should consider?"
+  - "What's your most contrarian view about our space?"
+  - *Follow-up*: "What would have to be true for that to work?"
 
 **Closing (5 min):** "What questions should I have asked that I didn't?"
 
@@ -162,7 +162,7 @@ Surprises: [Unexpected insights]
 
 **Competitive Heatmap:**
 | Capability | Us | Competitor A | Competitor B | Comparable X | Evaluation Criteria |
-|------------|----|--------------|--------------|--------------|--------------------|
+| --- | --- | --- | --- | --- | --- |
 | Core Feature Set | 🟡 | 🟢 | 🔴 | 🟢 | Breadth, depth, ease of use |
 | User Experience | 🟢 | 🟡 | 🟡 | 🟢 | Intuitive, delightful, accessible |
 | Technical Performance | 🟡 | 🟢 | 🔴 | 🟡 | Speed, reliability, scalability |
@@ -259,23 +259,23 @@ Workaround Options: [Alternative approaches if any]
 
 **Process:**
 1. **Individual Problem Brainstorm (1:00-2:30 PM)**
-   - Each person writes problems on sticky notes (one problem per note)
-   - Problems should be specific user or business problems, not solutions
-   - Focus on problems that prevent product growth or user success
-   - Aim for 15-30 problems per person
+  - Each person writes problems on sticky notes (one problem per note)
+  - Problems should be specific user or business problems, not solutions
+  - Focus on problems that prevent product growth or user success
+  - Aim for 15-30 problems per person
 
 2. **Problem Sharing (2:30-3:30 PM)**
-   - Each person presents their problems (1 minute per problem max)
-   - Post all sticky notes on wall
-   - No debate—just clarifying questions
+  - Each person presents their problems (1 minute per problem max)
+  - Post all sticky notes on wall
+  - No debate—just clarifying questions
 
 3. **Break (3:30-3:45 PM)**
 
 4. **Initial Clustering (3:45-5:00 PM)**
-   - Group similar problems together
-   - Give each cluster a descriptive name
-   - Aim for 10-15 clusters
-   - Don't worry about perfect categorization—rough groupings are fine
+  - Group similar problems together
+  - Give each cluster a descriptive name
+  - Aim for 10-15 clusters
+  - Don't worry about perfect categorization—rough groupings are fine
 
 **End of Day Output:** 50-150 problem statements clustered into 10-15 themes
 
@@ -309,32 +309,32 @@ Each cluster becomes an opportunity area:
 **The 4 Scoring Dimensions (1-5 scale each):**
 
 1. **Expected Impact (1-5)**
-   - 5: Affects majority of users frequently with high pain/value
-   - 4: Affects many users regularly with moderate-high pain/value  
-   - 3: Affects some users regularly OR many users occasionally
-   - 2: Affects some users occasionally with moderate pain/value
-   - 1: Affects few users infrequently with low pain/value
+  - 5: Affects majority of users frequently with high pain/value
+  - 4: Affects many users regularly with moderate-high pain/value  
+  - 3: Affects some users regularly OR many users occasionally
+  - 2: Affects some users occasionally with moderate pain/value
+  - 1: Affects few users infrequently with low pain/value
 
 2. **Certainty of Impact (1-5)**
-   - 5: Strong evidence from multiple sources (data + research + user feedback)
-   - 4: Good evidence from 2+ sources with some validation
-   - 3: Moderate evidence from 1-2 sources 
-   - 2: Limited evidence but logical hypothesis
-   - 1: Speculative with minimal supporting evidence
+  - 5: Strong evidence from multiple sources (data + research + user feedback)
+  - 4: Good evidence from 2+ sources with some validation
+  - 3: Moderate evidence from 1-2 sources 
+  - 2: Limited evidence but logical hypothesis
+  - 1: Speculative with minimal supporting evidence
 
 3. **Clarity of Levers (1-5)**
-   - 5: Very clear what actions/features would address this
-   - 4: Generally clear with a few different promising approaches
-   - 3: Some ideas but need experimentation to find right approach
-   - 2: Directionally right but unclear on specific actions
-   - 1: Problem is clear but solutions are very uncertain
+  - 5: Very clear what actions/features would address this
+  - 4: Generally clear with a few different promising approaches
+  - 3: Some ideas but need experimentation to find right approach
+  - 2: Directionally right but unclear on specific actions
+  - 1: Problem is clear but solutions are very uncertain
 
 4. **Uniqueness of Levers (1-5)** ⭐ *Often missed but critical*
-   - 5: Strong unique advantages (brand, data, technology, partnerships)
-   - 4: Some unique advantages that provide differentiation
-   - 3: Can differentiate through execution but not structurally unique
-   - 2: Slight advantages but mostly playing on level field
-   - 1: No clear advantages—would be playing catch-up
+  - 5: Strong unique advantages (brand, data, technology, partnerships)
+  - 4: Some unique advantages that provide differentiation
+  - 3: Can differentiate through execution but not structurally unique
+  - 2: Slight advantages but mostly playing on level field
+  - 1: No clear advantages—would be playing catch-up
 
 **Afternoon Session (1 PM - 5 PM): Scoring & Selection**
 
@@ -359,7 +359,7 @@ Each cluster becomes an opportunity area:
 
 **Scoring Template:**
 | Opportunity Area | Expected Impact | Certainty | Clarity of Levers | Uniqueness | Total | Evidence Notes |
-|------------------|------------------|-----------|-------------------|------------|-------|----------------|
+| --- | --- | --- | --- | --- | --- | --- |
 | Discovery & Findability | 4 | 3 | 4 | 2 | 13 | High user pain (research), unclear differentiation |
 | Onboarding & Activation | 5 | 4 | 3 | 3 | 15 | Clear business impact, some unique data advantages |
 
@@ -680,7 +680,7 @@ For each pillar, capture:
 ### Enhanced Pillar Scorecard
 
 | Pillar | Expected Impact (1-5) | Certainty of Impact (1-5) | Clarity of Levers (1-5) | Uniqueness of Levers (1-5) | Total Score | Evidence Summary |
-|--------|------------------------|----------------------------|--------------------------|------------------------------|-------------|------------------|
+| --- | --- | --- | --- | --- | --- | --- |
 | Example: Discovery | 4 | 3 | 4 | 2 | 13 | High user pain in research, feature usage data shows discovery issues, but limited competitive differentiation |
 
 **Scoring Rubric:**

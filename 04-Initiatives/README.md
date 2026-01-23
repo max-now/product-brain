@@ -14,7 +14,7 @@ This directory is your starting point for capturing early initiative thinking be
 - Document what you know vs. what needs research
 - Identify key questions to validate
 
-**Discovery Frameworks (`../02-Methods-and-Tools/2.3-Discovery/`):**
+**Discovery Frameworks (****`../02-Methods-and-Tools/2.3-Discovery/`****):**
 - Use `2.3.4-Opportunity-Assessment/` to structure your opportunity assessment (this template is based on that framework)
 - Validate assumptions with user interviews (see `2.3.1-Research-Interviews/`)
 - Synthesize patterns from evidence (see `2.3.2-Continuous-Discovery-Habits/`)

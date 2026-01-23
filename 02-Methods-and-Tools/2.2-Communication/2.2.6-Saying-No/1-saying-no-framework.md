@@ -44,8 +44,8 @@ Each type needs a different response.
 **Three-Part Structure:**
 
 1. **Acknowledge** the request and why it matters
-1. **Explain** the constraint or trade-off
-1. **Offer** an alternative or path forward
+2. **Explain** the constraint or trade-off
+3. **Offer** an alternative or path forward
 
 **Formula:**
 

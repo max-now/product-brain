@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaign Creation Form - Phase 1 Performance Levers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F4F4F4;
+            color: #1A1A1A;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: 24px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 32px;
+            color: #1A1A1A;
+            margin-bottom: 4px;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #767676;
+        }
+
+        .form-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .form-section {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 16px;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+        }
+
+        .form-label .required {
+            color: #DB4C40;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            border: 1px solid #D1D1D1;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            color: #1A1A1A;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #5046C5;
+        }
+
+        .form-input::placeholder {
+            color: #A3A3A3;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-input {
+            width: 18px;
+            height: 18px;
+            border: 1px solid #D1D1D1;
+            border-radius: 4px;
+            cursor: pointer;
+            accent-color: #5046C5;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #1A1A1A;
+            cursor: pointer;
+        }
+
+        .date-range-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #E8E8E8;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background: #5046C5;
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background: #6259CB;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #5046C5;
+            border: 1px solid #5046C5;
+        }
+
+        .btn-secondary:hover {
+            background: #F6F6FC;
+        }
+
+        /* Context Panel */
+        .context-panel {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 24px;
+        }
+
+        .context-header {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 24px;
+            color: #1A1A1A;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .context-merchant {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            color: #484848;
+            margin-bottom: 16px;
+        }
+
+        .context-merchant-name {
+            font-weight: 600;
+            color: #1A1A1A;
+        }
+
+        .context-section {
+            margin-bottom: 20px;
+        }
+
+        .context-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .context-section-title {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 16px;
+            color: #767676;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .context-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .context-item-label {
+            color: #484848;
+            font-weight: 400;
+        }
+
+        .context-item-value {
+            color: #1A1A1A;
+            font-weight: 500;
+        }
+
+        .rank-change {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rank-arrow {
+            color: #00A15E;
+            font-weight: 700;
+        }
+
+        .warning-box {
+            background: #FEF5E5;
+            border: 1px solid #F7AF33;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+
+        .warning-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .warning-icon {
+            color: #F59B00;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .warning-title {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 16px;
+            color: #9F690C;
+        }
+
+        .warning-content {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            color: #484848;
+            margin-left: 24px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 24px;
+            color: #A3A3A3;
+            font-size: 14px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Create Ranking Campaign</h1>
+            <p class="page-subtitle">Schedule time-bound merchant visibility campaigns across placements</p>
+        </div>
+
+        <div class="form-layout">
+            <!-- Left: Form Inputs -->
+            <div class="form-section">
+                <div class="form-group">
+                    <label class="form-label">
+                        Merchant <span class="required">*</span>
+                    </label>
+                    <select class="form-select">
+                        <option value="">Search for merchant...</option>
+                        <option value="merchant-a" selected>Merchant A - Singapore Airlines (ID: 12345)</option>
+                        <option value="merchant-b">Merchant B - Shopee</option>
+                        <option value="merchant-c">Merchant C - Grab</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Placements <span class="required">*</span>
+                    </label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="placement-1" class="checkbox-input" checked>
+                            <label for="placement-1" class="checkbox-label">Earn Home → Popular Merchants</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="placement-2" class="checkbox-input" checked>
+                            <label for="placement-2" class="checkbox-label">Earn Home → Limited Time Deals</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="placement-3" class="checkbox-input">
+                            <label for="placement-3" class="checkbox-label">Deals Calendar → Current Tab</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Boost Type <span class="required">*</span>
+                    </label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" name="boost-type" id="boost-general" class="checkbox-input" checked>
+                            <label for="boost-general" class="checkbox-label">
+                                <strong>General boost</strong> <span style="color: #767676; font-size: 12px;">(free tier - relative improvement, no specific position guarantee)</span>
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" name="boost-type" id="boost-topn" class="checkbox-input">
+                            <label for="boost-topn" class="checkbox-label">
+                                <strong>Top N placement</strong> <span style="color: #767676; font-size: 12px;">(e.g., "top 20" - ensures appearance in top N)</span>
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" name="boost-type" id="boost-specific" class="checkbox-input">
+                            <label for="boost-specific" class="checkbox-label">
+                                <strong>Specific rank</strong> <span style="color: #767676; font-size: 12px;">(paid tier - exact position, takes priority)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Boost Value
+                    </label>
+                    <input type="number" class="form-input" placeholder="e.g., 20 for 'top 20' or 5 for 'rank 5'" disabled>
+                    <div style="font-size: 12px; color: #767676; margin-top: 4px;">Required for Top N placement and Specific rank. Disabled for General boost.</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Tag Configuration
+                    </label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="tag-featured" class="checkbox-input">
+                            <label for="tag-featured" class="checkbox-label">
+                                Show "Featured" tag <span style="color: #767676; font-size: 12px;">(only if merchant has no upsize promotion)</span>
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="tag-upsize" class="checkbox-input">
+                            <label for="tag-upsize" class="checkbox-label">
+                                Show upsize tag <span style="color: #767676; font-size: 12px;">(only if merchant has upsize promotion)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Campaign Duration <span class="required">*</span>
+                    </label>
+                    <div class="date-range-group">
+                        <div>
+                            <input type="datetime-local" class="form-input" value="2026-01-20T09:00">
+                        </div>
+                        <div>
+                            <input type="datetime-local" class="form-input" value="2026-02-03T23:59">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Campaign Notes (Optional)
+                    </label>
+                    <input type="text" class="form-input" placeholder="e.g., Partner agreement - Q1 2026 visibility boost">
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-primary">Create Campaign</button>
+                    <button class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+
+            <!-- Right: Context Panel -->
+            <div class="context-panel">
+                <div class="context-header">Campaign Preview</div>
+
+                <div class="context-merchant">
+                    Merchant: <span class="context-merchant-name">Singapore Airlines</span>
+                </div>
+
+                <div class="context-section">
+                    <div class="context-section-title">Boost Configuration</div>
+                    <div class="context-item">
+                        <span class="context-item-label">Boost Type</span>
+                        <span class="context-item-value" style="background: #E8E8E8; padding: 2px 8px; border-radius: 4px; font-size: 12px;">General</span>
+                    </div>
+                    <div class="context-item">
+                        <span class="context-item-label">Tags</span>
+                        <span class="context-item-value" style="font-size: 12px; color: #767676;">None selected</span>
+                    </div>
+                </div>
+
+                <div class="context-section">
+                    <div class="context-section-title">Current Rankings</div>
+                    <div class="context-item">
+                        <span class="context-item-label">Earn Home → Popular</span>
+                        <span class="context-item-value">Rank 8</span>
+                    </div>
+                    <div class="context-item">
+                        <span class="context-item-label">Earn Home → Deals</span>
+                        <span class="context-item-value">Rank 12</span>
+                    </div>
+                </div>
+
+                <div class="context-section">
+                    <div class="context-section-title">Projected Impact</div>
+                    <div style="font-size: 12px; color: #767676; margin-bottom: 8px; font-style: italic;">
+                        General boost provides relative improvement without specific position guarantee
+                    </div>
+                    <div class="context-item">
+                        <span class="context-item-label">Earn Home → Popular</span>
+                        <div class="rank-change">
+                            <span class="context-item-value">8</span>
+                            <span class="rank-arrow">→ ~4-6</span>
+                        </div>
+                    </div>
+                    <div class="context-item">
+                        <span class="context-item-label">Earn Home → Deals</span>
+                        <div class="rank-change">
+                            <span class="context-item-value">12</span>
+                            <span class="rank-arrow">→ ~6-8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="context-section">
+                    <div class="context-section-title">Active Campaigns at Selected Placements</div>
+                    <div class="context-item">
+                        <span class="context-item-label" style="font-size: 13px;">Earn Home → Popular</span>
+                    </div>
+                    <div style="margin-left: 12px; margin-top: 4px;">
+                        <div style="font-size: 12px; color: #484848; margin-bottom: 4px;">
+                            • Merchant E (Jan 15-25)
+                        </div>
+                        <div style="font-size: 12px; color: #484848;">
+                            • Merchant F (Jan 20-30) ⚠️
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <div class="warning-header">
+                        <span class="warning-icon">⚠️</span>
+                        <span class="warning-title">Potential Conflict Detected</span>
+                    </div>
+                    <div class="warning-content">
+                        Merchant F has an overlapping campaign on "Earn Home → Popular" (Jan 20-30). Your campaign will override from Jan 20 onward.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

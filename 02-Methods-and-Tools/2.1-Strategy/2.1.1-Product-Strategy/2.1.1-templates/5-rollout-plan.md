@@ -5,7 +5,7 @@
 #### Stakeholder Analysis Matrix
 
 | Stakeholder | Role | Influence Level | Interest Level | Communication Approach | Key Concerns |
-|-------------|------|-----------------|----------------|----------------------|--------------|
+| --- | --- | --- | --- | --- | --- |
 | CEO | Final Approver | High | High | 1:1 first, detailed walkthrough | Business impact, resource allocation |
 | VP Engineering | Implementation Lead | High | High | 1:1 early, technical feasibility focus | Technical constraints, team capacity |
 | Design Director | Pillar Champion | Medium | High | Collaborative review, design implications | User experience impact, design resources |

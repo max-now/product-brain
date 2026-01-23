@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchant Ranking Visibility Dashboard - Phase 1 Performance Levers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F4F4F4;
+            color: #1A1A1A;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: 24px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 32px;
+            color: #1A1A1A;
+            margin-bottom: 4px;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #767676;
+        }
+
+        .dashboard-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        /* Search Bar */
+        .search-section {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            border: 1px solid #D1D1D1;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            color: #1A1A1A;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #5046C5;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background: #5046C5;
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background: #6259CB;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #5046C5;
+            border: 1px solid #5046C5;
+        }
+
+        .btn-secondary:hover {
+            background: #F6F6FC;
+        }
+
+        /* Merchant Header */
+        .merchant-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #E8E8E8;
+        }
+
+        .merchant-info h2 {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 24px;
+            color: #1A1A1A;
+            margin-bottom: 4px;
+        }
+
+        .merchant-meta {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            color: #767676;
+        }
+
+        .merchant-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: #F4F4F4;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 16px;
+            color: #767676;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 32px;
+            color: #1A1A1A;
+        }
+
+        .stat-change {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 16px;
+            margin-top: 4px;
+        }
+
+        .stat-change.positive {
+            color: #00A15E;
+        }
+
+        .stat-change.negative {
+            color: #DB4C40;
+        }
+
+        /* Ranking Table */
+        .section-header {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 24px;
+            color: #1A1A1A;
+            margin-bottom: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #F4F4F4;
+        }
+
+        th {
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 16px;
+            color: #484848;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        td {
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        tbody tr:hover {
+            background: #F4F4F4;
+        }
+
+        .rank-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1A1A1A;
+        }
+
+        .rank-large {
+            color: #A3A3A3;
+        }
+
+        .campaign-badge {
+            display: inline-block;
+            background: #E6F6EF;
+            color: #0C6D44;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .campaign-badge.scheduled {
+            background: #E9EFFA;
+            color: #204787;
+        }
+
+        .next-change {
+            font-size: 12px;
+            color: #484848;
+        }
+
+        .trend-cell {
+            width: 150px;
+        }
+
+        .sparkline {
+            display: flex;
+            align-items: flex-end;
+            height: 40px;
+            gap: 2px;
+        }
+
+        .sparkline-bar {
+            flex: 1;
+            background: #B9B5E8;
+            min-height: 4px;
+            border-radius: 2px 2px 0 0;
+        }
+
+        .sparkline-bar.current {
+            background: #5046C5;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            background: #F4F4F4;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chart-placeholder {
+            text-align: center;
+            color: #767676;
+        }
+
+        .chart-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .chart-subtitle {
+            font-size: 12px;
+            color: #A3A3A3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Merchant Ranking Visibility</h1>
+            <p class="page-subtitle">View current merchant rankings and campaign status across placements</p>
+        </div>
+
+        <!-- Search Section -->
+        <div class="dashboard-card">
+            <div class="search-section">
+                <input type="text" class="search-input" placeholder="Search merchant by name or ID..." value="Singapore Airlines">
+                <button class="btn btn-primary">Search</button>
+            </div>
+        </div>
+
+        <!-- Merchant Details -->
+        <div class="dashboard-card">
+            <div class="merchant-header">
+                <div class="merchant-info">
+                    <h2>Singapore Airlines</h2>
+                    <div class="merchant-meta">Merchant ID: 12345 • Category: Travel • Active since Jan 2024</div>
+                </div>
+                <div class="merchant-actions">
+                    <button class="btn btn-secondary">Export CSV</button>
+                    <button class="btn btn-primary">+ Create Campaign</button>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Best Rank</div>
+                    <div class="stat-value">2</div>
+                    <div class="stat-change positive">↑ Improved from rank 8</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Active Campaigns</div>
+                    <div class="stat-value">2</div>
+                    <div class="stat-change">Expires Feb 3, 2026</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Scheduled Changes</div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-change">No upcoming campaigns</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Avg Rank (30d)</div>
+                    <div class="stat-value">6.3</div>
+                    <div class="stat-change positive">↑ 2.1 vs previous month</div>
+                </div>
+            </div>
+
+            <!-- Rankings Table -->
+            <div class="section-header">Current Rankings by Placement</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Placement</th>
+                        <th>Current Rank</th>
+                        <th>Active Campaign</th>
+                        <th>Next Scheduled Change</th>
+                        <th class="trend-cell">Trend (30 days)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Earn Home → Popular Merchants</td>
+                        <td><span class="rank-value">2</span></td>
+                        <td><span class="campaign-badge">Yes (ends Jan 25)</span></td>
+                        <td>—</td>
+                        <td class="trend-cell">
+                            <div class="sparkline">
+                                <div class="sparkline-bar" style="height: 25%;"></div>
+                                <div class="sparkline-bar" style="height: 30%;"></div>
+                                <div class="sparkline-bar" style="height: 35%;"></div>
+                                <div class="sparkline-bar" style="height: 40%;"></div>
+                                <div class="sparkline-bar" style="height: 50%;"></div>
+                                <div class="sparkline-bar" style="height: 60%;"></div>
+                                <div class="sparkline-bar" style="height: 75%;"></div>
+                                <div class="sparkline-bar current" style="height: 100%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Earn Home → Limited Time Deals</td>
+                        <td><span class="rank-value">3</span></td>
+                        <td><span class="campaign-badge">Yes (ends Feb 3)</span></td>
+                        <td>—</td>
+                        <td class="trend-cell">
+                            <div class="sparkline">
+                                <div class="sparkline-bar" style="height: 35%;"></div>
+                                <div class="sparkline-bar" style="height: 40%;"></div>
+                                <div class="sparkline-bar" style="height: 38%;"></div>
+                                <div class="sparkline-bar" style="height: 45%;"></div>
+                                <div class="sparkline-bar" style="height: 60%;"></div>
+                                <div class="sparkline-bar" style="height: 70%;"></div>
+                                <div class="sparkline-bar" style="height: 85%;"></div>
+                                <div class="sparkline-bar current" style="height: 100%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Deals Calendar → Current Tab</td>
+                        <td><span class="rank-value rank-large">999999</span></td>
+                        <td>—</td>
+                        <td><span class="next-change">Jan 30: Rank → 5</span></td>
+                        <td class="trend-cell">
+                            <div class="sparkline">
+                                <div class="sparkline-bar" style="height: 10%;"></div>
+                                <div class="sparkline-bar" style="height: 10%;"></div>
+                                <div class="sparkline-bar" style="height: 10%;"></div>
+                                <div class="sparkline-bar" style="height: 10%;"></div>
+                                <div class="sparkline-bar" style="height: 10%;"></div>
+                                <div class="sparkline-bar" style="height: 10%;"></div>
+                                <div class="sparkline-bar" style="height: 10%;"></div>
+                                <div class="sparkline-bar current" style="height: 10%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Search Bar → Default</td>
+                        <td><span class="rank-value">8</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td class="trend-cell">
+                            <div class="sparkline">
+                                <div class="sparkline-bar" style="height: 60%;"></div>
+                                <div class="sparkline-bar" style="height: 55%;"></div>
+                                <div class="sparkline-bar" style="height: 58%;"></div>
+                                <div class="sparkline-bar" style="height: 62%;"></div>
+                                <div class="sparkline-bar" style="height: 65%;"></div>
+                                <div class="sparkline-bar" style="height: 63%;"></div>
+                                <div class="sparkline-bar" style="height: 68%;"></div>
+                                <div class="sparkline-bar current" style="height: 70%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Historical Chart -->
+            <div class="chart-container">
+                <div class="chart-placeholder">
+                    <div class="chart-title">Historical Rank Trend</div>
+                    <div class="chart-subtitle">Interactive line chart showing rank changes over last 30 days per placement</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

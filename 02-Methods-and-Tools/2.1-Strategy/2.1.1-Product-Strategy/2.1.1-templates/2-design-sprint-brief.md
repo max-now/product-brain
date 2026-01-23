@@ -39,7 +39,7 @@
 ### Core Team (Required)
 
 | Role | Responsibilities | Time Commitment | Key Contributions |
-|------|-----------------|-----------------|-------------------|
+| --- | --- | --- | --- |
 | **Design Lead** (Facilitator) | Sprint facilitation, concept creation leadership, final artifact production | Full-time (5 days) | Design expertise, facilitation, visual communication |
 | **Product Manager** | Strategy context, user needs articulation, feasibility guidance | Full-time (3 days) + review sessions | Strategic alignment, user perspective, business constraints |
 | **Engineering Lead** | Technical feasibility input, implementation perspective | 50% time (key sessions) | Technical constraints, implementation complexity assessment |
@@ -48,7 +48,7 @@
 ### Extended Team (Optional)
 
 | Role | Responsibilities | Time Commitment | Key Contributions |
-|------|-----------------|-----------------|-------------------|
+| --- | --- | --- | --- |
 | **User Researcher** | User behavior insights, concept validation approach | 25% time | User needs validation, research methodology |
 | **Content Designer** | Copy and messaging considerations | 25% time | Communication clarity, user language |
 | **Technical Writer** | Documentation support, concept articulation | 25% time | Clear concept descriptions, technical documentation |

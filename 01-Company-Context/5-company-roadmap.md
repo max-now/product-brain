@@ -18,12 +18,12 @@ This is the company-wide roadmap that aggregates strategic initiatives from all 
 ## 🗓️ NOW (High Confidence 70-90%) - Q[X] 2025
 
 | Initiative | Target Outcome | Success Metrics | Confidence | Dependencies |
-|------------|----------------|-----------------|------------|--------------|
+| --- | --- | --- | --- | --- |
 | [Initiative Name] | [Business outcome this achieves] | [How we'll measure success] | 🟢 | [What we need from others] |
 
 ### Example:
 | Initiative | Target Outcome | Success Metrics | Confidence | Dependencies |
-|------------|----------------|-----------------|------------|--------------|
+| --- | --- | --- | --- | --- |
 | Enhance real-time [metric] monitoring | Reduce [risk type] in [operational area] | [X]% reduction in [incident type], [Y]% improvement in [accuracy metric] | 🟢 | [External dependency] from [Team/Provider] |
 | Automate [process] tracking | Eliminate manual [error type] and reduce [overhead type] | [X]% automated [process], [Y] hour reduction in daily [task] time | 🟢 | [Regulatory/Technical] approval for automated [process] |
 
@@ -32,12 +32,12 @@ This is the company-wide roadmap that aggregates strategic initiatives from all 
 ## 🔄 NEXT (Medium Confidence 40-70%) - H[X] 2025
 
 | Initiative | Target Outcome | Success Metrics | Confidence | Key Assumptions |
-|------------|----------------|-----------------|------------|-----------------|
+| --- | --- | --- | --- | --- |
 | [Initiative Name] | [Business outcome this achieves] | [How we'll measure success] | 🟡 | [What we're betting on] |
 
 ### Example:
 | Initiative | Target Outcome | Success Metrics | Confidence | Key Assumptions |
-|------------|----------------|-----------------|------------|-----------------|
+| --- | --- | --- | --- | --- |
 | Cross-[domain] [analytics type] dashboard | Enable [level] [capability] across [scope] | [X]% reduction in [time metric], [Y]% improvement in [accuracy metric] | 🟡 | [Model/System] remains valid post-[transition/change] |
 | Automated [system] management | Optimize [resource] utilization during [condition] | [X]% reduction in [cost type], [Y]% increase in [efficiency metric] | 🟡 | [External system] APIs provide real-time [data type] |
 
@@ -46,12 +46,12 @@ This is the company-wide roadmap that aggregates strategic initiatives from all 
 ## 🔮 LATER (Low Confidence 10-40%) - 2026+
 
 | Theme | Strategic Goal | Potential Outcomes | Confidence | Research Needed |
-|-------|----------------|-------------------|------------|-----------------|
+| --- | --- | --- | --- | --- |
 | [Theme Name] | [Long-term strategic direction] | [Possible success indicators] | 🔴 | [What we need to learn] |
 
 ### Example:
 | Theme | Strategic Goal | Potential Outcomes | Confidence | Research Needed |
-|-------|----------------|-------------------|------------|-----------------|
+| --- | --- | --- | --- | --- |
 | AI-driven [capability] forecasting | Leverage machine learning to predict [pattern type] across multiple [contexts] | Improved [accuracy metric], reduced [cost type], optimized [resource] allocation | 🔴 | [Data type] analysis, [behavior type] studies, AI model validation |
 | [Technology]-based [solution type] | Enable [capability] at scale | New revenue streams, reduced [cost type], enhanced [benefit type] | 🔴 | Regulatory framework development, [technology] scalability assessment |
 

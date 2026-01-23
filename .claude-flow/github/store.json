@@ -1,0 +1,20 @@
+{
+  "repos": {
+    "user/max-now": {
+      "owner": "user",
+      "name": "max-now",
+      "branch": "main",
+      "lastAnalyzed": "2026-01-23T06:52:35.388Z",
+      "metrics": {
+        "commits": 801,
+        "branches": 12,
+        "contributors": 22,
+        "openIssues": 25,
+        "openPRs": 8
+      }
+    }
+  },
+  "prs": {},
+  "issues": {},
+  "version": "3.0.0"
+}
