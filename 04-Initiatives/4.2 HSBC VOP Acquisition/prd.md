@@ -3,7 +3,7 @@
 **Status:** In Progress
 **Priority:** High
 **Lead:** Yash Chellani
-**Timeline:** Dec 5, 2025 - Jan 16, 2026
+**Timeline:** Dec 5, 2025 - Mar 1, 2026
 **Linear Project:** [View in Linear](https://linear.app/heymax/project/hsbc-card-acquisition-campaign-1740d80d3988)
 
 ---
@@ -95,7 +95,11 @@ From HSBC:
 
 - One Time
   - card models eligible
-  - excluded MCC codes for transactions of related card models
+    - HSBC Revolution Credit Card
+    - HSBC Advance Credit Card
+    - HSBC Live+ Credit Card
+  - excluded MCC for transactions of related card models:
+    - [https://drive.google.com/file/d/1zdy3v8PN0St-q3WX6ue9RmSwPTIstfts/view?usp=drivesdk](https://drive.google.com/file/d/1zdy3v8PN0St-q3WX6ue9RmSwPTIstfts/view?usp=drivesdk)
 - Bi-Weekly
   - Approval File
     - `email`,
@@ -137,24 +141,25 @@ To HSBC:
 | # | Module | User Story (if any) | Acceptance Criteria |
 | --- | --- | --- | --- |
 | 1 | Spend monitoring during minimum eligibility windows & notification triggers | As a user, I want clarity on my M1/M2/M3 spend windows so I can complete each tranche requirements confidently.\n\nAs a user, I want reminders about my spend progress so I don’t miss any tranche. | Card Page Display:\n- The Card Page for HSBC cards must display:\n  - Eligibility criteria for the card.\n  - The final date users can apply for the card.\n- A sample illustration that shows how tranche windows are calculated based on the user’s approval date.\n- The user must be able to view their current, upcoming, and completed tranche progress directly on the Card Page.\n\nEmail Communication of Personalised Tranche Windows:\n- After approval, each user must receive an email that includes their tranche windows calculated **based on their personal approval date**, not calendar month.\n- System must send a follow-up summary email when triggers are met until all three tranches have been completed or expired.\n  - Summary emails must show:\n    - Current active tranche.\n    - Upcoming tranche.\n    - Completed tranches, if any.\n  - Events are sent to Customer.io when:\n    - User reaches 70% of minimum spend\n    - User reaches 100% of minimum spend\n    - User is 5 – 7 days from window end\n    - User fails to meet spend\n  - Notes\n    - For emails of M1 tranche, users are notified that transactions made before card was linked will not be reflected but still count towards their minimum spend requirements |
-| 2 | Automated Miles Issuance/Confirmation/Cancellation based off minimum spend tracking during eligibility windows | As a user, I want my rewards to appear automatically when I meet the requirements so I feel the platform is reliable. | Tranche windows logic:\n- **M1:** Approval date → last day of the next calendar month.\n- **M2:** 1st day of the following month → last day of that same month.\n- **M3:** Full month immediately after the M2 month\n\nCard Page\n- The HeyMax Cards Application Page must display the T&Cs stating:\n  - Users will receive confirmation of card approval from HSBC\n  - Users will receive a second confirmation from HeyMax within 2 weeks from the card approval date as well as pending miles in their account.\n  - For the 1st month's reward, approval will be completed by HSBC. User is to check HSBC application if they had not linked card and started spending.\n  - Reward tracking accuracy may vary if the user has not linked their card.\n1st tranche\n- When the system ingests an HSBC approval CSV, for users with status = `accepted`, the user must automatically receive the corresponding pending miles for the 1st tranche.\n- When the system ingests an HSBC approval CSV, for users with status = `approved`, the user’s pending miles should be converted to approved miles.\n  - If user has not registered with HeyMax and miles has not been issued, miles will be issued as approved when user logs in.\n  - If user does not create account within campaign period (31st March 2026), miles will be forfeited\n- Rewards must not be issued or approved if the user is not present in the CSV or has a non-accepted status.\n\n2nd & 3rd tranche\n- When the system detects that the user has met the $500 minimum spend for the respective tranche spend period, miles will be disbursed as pending to the user.\n- Tranche rewards disbursed will be automatically confirmed in 60 days from end of tranche date.\n- If HSBC does not provide 1st-tranche approval details within 120 days from date of approval, the pending miles for the 2nd and 3rd trenches will be cancelled automatically.\n- Rewards must only be triggered once per tranche spend period and must not duplicate on repeated spend detections. |
+| 2 | Automated Miles Issuance/Confirmation/Cancellation based off minimum spend tracking during eligibility windows | As a user, I want my rewards to appear automatically when I meet the requirements so I feel the platform is reliable. | Tranche windows logic:\n- **M1:** Approval date → last day of the next calendar month.\n- **M2:** 1st day of the following month → last day of that same month.\n- **M3:** Full month immediately after the M2 month\n\nCard Page\n- The HeyMax Cards Application Page must display the T&Cs stating:\n  - Users will receive confirmation of card approval from HSBC\n  - Users will receive a second confirmation from HeyMax within 2 weeks from the card approval date as well as pending miles in their account.\n  - For the 1st month's reward, approval will be completed by HSBC. User is to check HSBC application if they had not linked card and started spending.\n  - Reward tracking accuracy may vary if the user has not linked their card.\n1st tranche\n- When the system ingests an HSBC approval CSV, for users with status = `accepted`, the user must automatically receive the corresponding pending miles for the 1st tranche.\n- When the system ingests an HSBC approval CSV, for users with status = `approved`, the user’s pending miles should be converted to approved miles.\n  - If user has not registered with HeyMax and miles has not been issued, miles will be issued as approved when user logs in.\n  - If user does not create account within campaign period (31st March 2026), miles will be forfeited\n- Rewards must not be issued or approved if the user is not present in the CSV or has a non-accepted status.\n\n2nd & 3rd tranche\n- When the system detects that the user has met the $500 minimum spend for the respective tranche spend period, miles will be disbursed as pending to the user.\n- Tranche rewards disbursed will be automatically confirmed in 60 days from end of tranche date.\n- If HSBC does not provide 1st-tranche approval details within 90 days from end of M1 tranche, the pending miles for the 2nd and 3rd trenches will be cancelled automatically.\n- Rewards must only be triggered once per tranche spend period and must not duplicate on repeated spend detections. |
+| 3 | Frontend | As a user, I want to know that my \n1. card's sign up bonus min spend and \n2. monthly card bonus min spend\n\nare separate components so that I do not get confused when tracking my progress. | - Card Maximiser card page of user's linked card to show alert message.\n- To be removed after M3 tranche period is over or M1 tranche results comes as rejected, whichever earlier. |
 
 ---
 
 ## 8. Technical Requirements
 | # | Module | Acceptance Criteria |
 | --- | --- | --- |
-| 1 | Processing for HSBC files | Requirements\n- CSV template:\n  - email, approval_date, card_bin, card_last_4, status, card_name\n- Partial file failures (e.g., invalid rows) must not stop the processing of valid rows.\n- After every upload, the system must generate a processing summary report (e.g., counts of processed, failed, skipped rows).\n- Re-uploaded rows must be processed only if their status has changed.\n- If the previous status is already terminal (approved or rejected), no update is applied.\n- If a record matches an existing user, the system must issue/update miles according to status rules.\n- If a record does not match an existing user, the system must send an email prompting the person to sign up using the provided link.\n- If the user exists but the card is not linked, the system must notify the user to link their card to start tracking. (we can send event)\n- Valid records must activate or update the user’s M1/M2/M3 tranche eligibility windows.\n\nTranche & Status Processing Logic\n1. Accepted Status\n  1. When a record has status = accepted, the system must create a pending M1mile transaction (transaction_type = pending) if one does not already exist.\n2. Approved Status\n  1. When a record has status = approved:\n    1. If the user does not have a M1 transaction, create one with\n      1. transaction_type = approved\n    2. If the user already has a M1 pending transaction, update it to\n      1. transaction_type = approved\n3. Rejected Status\n  1. When a record has status = rejected:\n    1. Update the user’s M1 mile transaction to\n      1. transaction_type = cancelled (if it exists)\n    2. If the user has M2 or M3 transactions, update them to\n      1. transaction_type = cancelled as well\n\nTriggered System Behaviours\n- Successful ingestion of a file must trigger M1 trench updates immediately.\n- Tranche eligibility windows must be created or updated upon successful processing of a valid record.\n\nPost–CSV Ingestion Notifications\nFor any change in 1st-trench status during ingestion:\n- Accepted\n  - User will be sent an event which triggers an email confirming that their 1st tranche miles have been issued (pending).\n- Approved\n  - User will be sent an event which triggers an email confirming their 1st tranche miles are approved.\n- Rejected\n  - User must receive an email stating:\n    - Their miles have been cancelled,\n    - They did not meet the minimum spend,\n    - They may contact HSBC if they believe this is an error,\n    - Otherwise, the miles will be automatically cancelled in 2 weeks. |
+| 1 | Processing for HSBC files | Requirements\n- CSV template:\n- email, approval_date, card_bin, card_last_4, status, card_name\n- Partial file failures (e.g., invalid rows) must not stop the processing of valid rows.\n- After every upload, the system must generate a processing summary report (e.g., counts of processed, failed, skipped rows).\n- Re-uploaded rows must be processed only if their status has changed.\n- If the previous status is already terminal (approved or rejected), no update is applied.\n- If a record matches an existing user, the system must issue/update miles according to status rules.\n- If a record does not match an existing user, the system must send an email prompting the person to sign up using the provided link.\n- If the user exists but the card is not linked, the system must notify the user to link their card to start tracking. (we can send event)\n- Valid records must activate or update the user’s M1/M2/M3 tranche eligibility windows.\n\nTranche & Status Processing Logic\n1. Accepted Status\n2. When a record has status = accepted, the system must create a pending M1mile transaction (transaction_type = pending) if one does not already exist.\n3. Approved Status\n4. When a record has status = approved:\n5. If the user does not have a M1 transaction, create one with\n6. transaction_type = approved\n7. If the user already has a M1 pending transaction, update it to\n8. transaction_type = approved\n9. Rejected Status\n10. When a record has status = rejected:\n11. Update the user's M1 mile transaction auto_cancel date to 4 weeks from date of processing\n12. send an event to user about the rejected status to kick start customer.io campaign\n13. if the user has M2 and M3 transactions, no updates to these transactions necessary necessary\n14. after the time for user's M1 tranche has elapse, M1 to be auto cancelled, which triggers cancellation for M2 and M3 transactions.\n\nTriggered System Behaviours\n- Successful ingestion of a file must trigger M1 trench updates immediately.\n- Tranche eligibility windows must be created or updated upon successful processing of a valid record.\n\nPost–CSV Ingestion Notifications\nFor any change in 1st-trench status during ingestion:\n- Accepted\n- User will be sent an event which triggers an email confirming that their 1st tranche miles have been issued (pending).\n- Approved\n- User will be sent an event which triggers an email confirming their 1st tranche miles are approved.\n- Rejected\n- User must receive an email stating:\n- Their miles have been cancelled,\n- They did not meet the minimum spend,\n- They may contact HSBC if they believe this is an error,\n- Otherwise, the miles will be automatically cancelled in 2 weeks. |
 | 2 | Monthly Clawback Processing | - System accepts a monthly CSV from HSBC\n  - attributes include\n    - user's email\n    - clawback reason\n    - trenches to clawback\n- Post Ingestion\n  - Freezes redemption of user for 2 weeks\n  - Issues email to user regarding clawback, to get user to reach out to HSBC if its an error, ignore if no issue\n  - After 2 weeks, release redemption block + proceed with negative adjustments to user reward balances\n  - Clawback / Cancellation of future tranches if required\n- Logs every clawback for auditability. |
 ## 9. Event Tracking Requirements
 
 | Event Name | Attributes | Description | existing |
 | --- | --- | --- | --- |
-| `card_approval_received` | - user_id\n- email\n- card_name\n- card_last_four\n- approval_date\n- bank | M1 eligibility created | to create |
-| `card_min_spend_updated` | - user_id\n- email\n- card_name\n- card_last_four\n- trench_number\n- spend_amount\n- spend_remaining\n- window_end_date | spend update | to create |
+| `card_status_updated` | - user_id\n- email\n- card_name\n- card_last_four\n- approval_date\n- bank\n- status\n- accepted\n- approved\n- rejected | card application status updates from HSBC | to create |
+| `card_min_spend_updated` | - user_id\n- email\n- card_name\n- card_last_four\n- tranche_number\n- spend_amount\n- spend_remaining\n- window_end_date | card spend tracking update from HeyMax | to create |
 | `mile_transaction` | - | Pending miles issued for trench rewards | ✅ |
 | `mile_transaction` | - | miles approved for trench rewards completion | ✅ |
-| `mile_transaction` | • reason | miles cancelled for failure to hit minimum spend for trench rewards | to update |
+| `mile_transaction` | - reason | miles cancelled for failure to hit minimum spend for  trench rewards | to update |
 
 ---
 
@@ -166,11 +171,11 @@ Email Designs
 
 ---
 
+## 11. FAQs
 
 **Q: How long do I have to wait before miles becomes confirmed?**
-
 - Expected confirmation time is show on the transaction timeline.
-  - ~60 days after each trench (or auto-approval if HSBC does not respond).
+  - ~60 days after each tranche (or auto-approval if HSBC does not respond).
 
 ---
 
@@ -188,7 +193,12 @@ Email Designs
 
 ---
 
-## 13. Ops & Customer Service Workflows
+## 13. Support Tooling
+
+Yash to build endpoints for ops to build their own interface
+
+---
+## 14. Ops & Customer Service Workflows
 
 See [ops-workflows.md](./ops-workflows.md) for detailed workflows including:
 - CSV ingestion and batch management

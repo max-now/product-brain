@@ -14,5 +14,4 @@ sad flow scenarios for CS to note of
 4. user M1 miles approved -> hsbc sends a clawback csv after a few months
   1. need to check if user cashed out
   2. clawback miles
-  3. open question: need to get our t&c to cover that hsbc pays us first regardless and we will refund hsbc.
-5. 
+  3. open question: need to get our t&c to cover that hsbc pays us first regardless and we will refund hsbc

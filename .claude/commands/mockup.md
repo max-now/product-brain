@@ -2,37 +2,69 @@ Create a visual UX mockup for: {{arg1}}
 
 ## Determine Mockup Type
 
-First, determine if this is:
-1. **New screen/feature** - Something that doesn't exist yet
-2. **Modification to existing screen** - Changes to an existing UI in the codebase
+Extract from the user's request:
+1. **Platform**: Mobile (React Native) or Web
+  - If not specified, ask the user which platform they want
+  - Mobile mockups should mimic React Native styling and components
+  - Web mockups should use standard web patterns
+
+2. **Mockup Type**: Determine if this is:
+3. **New screen/feature** - Something that doesn't exist yet
+4. **Modification to existing screen** - Changes to an existing UI in the codebase
+  - **New screen/feature** - Something that doesn't exist yet
+  - **Modification to existing screen** - Changes to an existing UI in the codebase
 
 ## Steps for NEW Screens
 
 1. **Parse the request** - Understand what UI/screen/feature the user wants to mock up
 
-2. **Check for style guide** - Look for `nimbalyst-local/existing-screens/style-guide.mockup.md`
-  - **If style guide DOES NOT EXIST**:
-    - Use the Task tool to spawn a sub-agent that will:
-      - Explore the codebase to understand the app's look and feel
-      - Find the theme files, CSS variables, color palette, and typography
-      - Identify common UI patterns, component styles, and spacing conventions
-      - Create `nimbalyst-local/existing-screens/style-guide.mockup.html` - a comprehensive visual reference showing:
-        - Color palette (primary, secondary, accent colors, grays, semantic colors like error/success/warning)
-        - Typography scale (headings H1-H6, body text, captions, with actual font families, sizes, weights, line heights)
-        - Spacing scale (common padding/margin values used in the app)
-        - Button styles (primary, secondary, danger, disabled states)
-        - Form elements (inputs, textareas, selects, checkboxes, radio buttons)
-        - Common UI patterns (cards, modals, tooltips, navigation elements)
-        - Border radii and shadows
-        - The style guide should be visually organized and easy to reference, like a design system documentation page
-      - This should be a DEEP inspection of the existing UI and a comprehensive guide.
-  - **If style guide EXISTS**:
-    - Read it to understand the app's design system
-    - Call relevant MCPs required to obtain the information required
+2. **Load the style guide** - Read `nimbalyst-local/existing-screens/style-guide.mockup.md`
+  - This contains the Design System with:
+    - Complete colour palette (neutral, brand, semantic colours)
+    - Typography system (Inter font family with all heading/body/label styles)
+    - Spacing scale (2px-24px)
+    - Border radius values
+    - Shadow definitions
+    - Component specifications (buttons, cards, forms, alerts, navigation)
+    - Accessibility guidelines with WCAG-compliant colour combinations
+  - **IMPORTANT**: Always use this style guide for consistency across all mockups
+  - If additional platform-specific patterns are needed, supplement (don't replace) the style guide
 
 3. **Create mockup file** - Create `nimbalyst-local/mockups/[descriptive-name].mockup.html`
 
-4. **Build the mockup** - Write HTML with inline CSS that matches the style guide, ensuring consistency with the existing app
+4. **Build the mockup** - Write HTML with inline CSS using the design system:
+
+  **For MOBILE (React Native) mockups:**
+  - Use a mobile device frame (375x812px iPhone dimensions)
+  - Mimic React Native styling patterns:
+    - Use flexbox layouts (React Native's default)
+    - Apply the design system colour palette from the style guide
+    - Use Inter font family with the typography scale from the style guide
+    - Implement the spacing system (2px-24px scale)
+    - Include React Native-style components (TouchableOpacity appearance, native inputs)
+    - Add platform-appropriate navigation (tab bar at bottom, header at top)
+    - Use the border radius and shadow values from the style guide
+    - Ensure touch targets meet 44x44px minimum
+    - Include status bar at top
+    - Read it to understand the app's design system
+    - Call relevant MCPs required to obtain the information required
+
+  **For WEB mockups:**
+  - Use standard web dimensions (1200px+ desktop or responsive)
+  - Apply the design system colour palette from the style guide
+  - Use Inter font family with the typography scale from the style guide
+  - Implement the spacing system (2px-24px scale)
+  - Use the button, card, and form component styles from the style guide
+  - Apply the border radius and shadow values from the style guide
+  - Include web-appropriate navigation (top nav, sidebar, etc.)
+  - Ensure accessibility compliance per the style guide (WCAG AA)
+
+  **Common to both platforms:**
+  - Colours: Use the complete design system palette (neutral, brand, semantic colours)
+  - Typography: Inter font with the defined heading/body/label styles
+  - Spacing: Use the 2px/4px/8px/12px/16px/20px/24px scale
+  - Components: Follow the button, card, form, and alert specifications
+  - Always reference the style guide for exact hex values and measurements
 
 5. **Verify visually** - Use the Task tool to spawn a sub-agent that will:
   - Capture screenshot with `mcp__nimbalyst-mcp__capture_mockup_screenshot`
@@ -44,10 +76,15 @@ First, determine if this is:
 
 **CRITICAL: New screen mockups should look realistic and consistent with the existing app.**
 
-- **Match app styling**: Use the actual colors, fonts, and spacing from the codebase
+- **Use the style guide**: Apply the HeyMax colour palette, Inter typography, and spacing system exactly
+- **Platform-appropriate**:
+  - Mobile: Mimic React Native patterns with native-looking components
+  - Web: Use standard web UI patterns with hover states and desktop interactions
 - **Realistic appearance**: Mockups should look like finished UI, not sketches
-- **Clear hierarchy**: Use size and spacing to show importance
-- **Consistent patterns**: Follow the same component patterns used elsewhere in the app
+- **Clear hierarchy**: Use the typography scale (H1-H5, body styles) to show importance
+- **Accessibility**: Follow WCAG AA guidelines from the style guide (proper contrast ratios, touch targets)
+- **Consistent components**: Use the defined button, card, form, and alert styles
+- **colour semantics**: Use Brand 100 for primary actions, semantic colours (red/green/yellow/blue) for status
 
 ## Steps for MODIFYING Existing Screens
 
@@ -75,14 +112,14 @@ First, determine if this is:
     - If you cannot run the app, ask the user: "Would you like to provide a screenshot of the current screen? This will help me create a pixel-perfect replica. Otherwise, I'll recreate it from the source code."
   - **Deep code analysis** - Use the Task tool to spawn a sub-agent that will analyze the specific screen being replicated:
     - Find ALL relevant React components, CSS files, theme files, and related code **for this specific screen**
-    - Extract exact colors (hex values), font sizes, font weights, line heights **used in this screen**
+    - Extract exact colours (hex values), font sizes, font weights, line heights **used in this screen**
     - Document exact spacing values (padding, margin, gap) **in this screen**
     - Identify border radii, shadows, and other visual details **specific to this screen**
-    - Spawn additional sub-agents if needed to cover different aspects (layout, typography, colors, icons)
+    - Spawn additional sub-agents if needed to cover different aspects (layout, typography, colours, icons)
     - If a screenshot was provided, use it as the reference to match pixel-for-pixel
     - **Note**: This is screen-specific analysis, not app-wide styling research
   - Create `nimbalyst-local/existing-screens/[screen-name].mockup.html` - a **pixel-perfect** HTML/CSS replica including:
-    - Exact colors from the existing CSS
+    - Exact colours from the existing CSS
     - Exact typography (font family, size, weight, line height)
     - Exact spacing and dimensions
     - All visual details (shadows, borders, hover states if relevant)
@@ -90,7 +127,7 @@ First, determine if this is:
 
 5. **Copy to mockups** - Copy the existing-screen replica to `nimbalyst-local/mockups/[descriptive-name].mockup.html`
 
-6. **Apply modifications** - Edit the copy in mockups to include the proposed changes, keeping modifications **in full color**
+6. **Apply modifications** - Edit the copy in mockups to include the proposed changes, keeping modifications **in full colour**
 
 7. **Verify visually** - Use the Task tool to spawn a sub-agent to capture and verify the mockup
 
@@ -98,10 +135,14 @@ First, determine if this is:
 
 ### Design Principles (Modifications)
 
-**CRITICAL: Modifications to existing screens should be in FULL COLOR to show realistic integration.**
+**CRITICAL: Modifications to existing screens should be in FULL COLOUR to show realistic integration.**
 
-- **Match existing styles**: Use the actual colors, fonts, and spacing from the codebase
-- **Highlight changes**: Consider using a subtle indicator (like a colored border or label) to show what's new/changed
+- **Use the style guide**: Apply design system colours if available, Inter typography, and spacing values
+- **Match existing styles**: Ensure consistency with the cached replica's visual style
+- **Platform consistency**:
+  - Mobile: Maintain React Native patterns and native component appearance
+  - Web: Keep web-appropriate patterns and interactions
+- **Highlight changes**: Consider using a subtle indicator (like a coloured border or label) to show what's new/changed
 - **Maintain consistency**: The mockup should look like it belongs in the existing app
 - **Never modify existing-screens directly**: Always copy to mockups first, then modify the copy
 
@@ -132,8 +173,14 @@ When the user draws annotations:
 
 ## Important Notes
 
-- **All mockups should look realistic** - Full color, proper styling, consistent with the app
-- **New screens**: Research app styling first, then build consistent mockups
-- **Modifications**: Create pixel-perfect replicas of existing screens, then modify
+- **All mockups should look realistic - Full colour, proper styling, consistent with the app and reference the design system if available** - Reference `nimbalyst-local/existing-screens/style-guide.mockup.md`
+- **Platform specification required**: Always ask if mobile (React Native) or web if not specified
+- **Mobile mockups**: Use 375x812px frame, React Native patterns, native-looking components, bottom tab navigation
+- **Web mockups**: Use desktop dimensions, standard web patterns, top navigation or sidebar
+- **colour palette**: Use HeyMax neutral, brand, and semantic colours from the style guide
+- **Typography**: Inter font family with the defined heading/body/label scale
+- **Spacing**: Apply the 2px-24px spacing system consistently
+- **Accessibility**: Follow WCAG AA guidelines (proper contrast, touch targets, semantic HTML)
+- **All mockups should look realistic** - Full colour, proper styling, production-ready appearance
 - Focus on communicating the concept clearly
 - Include enough detail to make decisions, but no more

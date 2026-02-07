@@ -13,6 +13,15 @@ Sync a Linear project with a local PRD markdown file by detecting changes and up
 /sync-prd https://linear.app/workspace/project/user-auth-abc123 ./04-Initiatives/4.3\ Earning\ Tracker/prd.md
 ```
 
+**Auto-detect from open file:**
+```
+/sync-prd
+```
+When no URL is provided, the command will:
+1. Check if a PRD file is currently open
+2. Search for a Linear URL in the file (in metadata section or anywhere in the document)
+3. Use the detected URL and current file path automatically
+
 ## What This Does
 
 This command syncs a Linear project with a local PRD file by:

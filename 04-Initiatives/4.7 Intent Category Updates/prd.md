@@ -63,7 +63,7 @@ All app users, particularly those with limited category exploration patterns
 ### New Intent Categories
 | Category | Status | New Merchants |
 | --- | --- | --- |
-| FX & Business Spend | 🆕 | Airwallex, Revolut |
+| FX & Biz | 🆕 | Airwallex, Revolut |
 | Shop offline | 🆕 | Atome, Chocolate Finance |
 | Invest | 🆕 | Webull, Syfe, Longbridge |
 ---

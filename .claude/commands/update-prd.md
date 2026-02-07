@@ -169,13 +169,13 @@ Linear project updated successfully
 
 ### When to Use This vs /sync-prd
 
-**Use `/update-prd`:**
+**Use \****`/update-prd`**\*\*:**
 - After editing PRD locally and want to push to Linear
 - When local PRD is source of truth
 - Before team meetings to share latest PRD changes
 - After incorporating feedback into local PRD
 
-**Use `/sync-prd`:**
+**Use \****`/sync-prd`**\*\*:**
 - After team updates project in Linear
 - When Linear is source of truth (status, completion)
 - To pull latest status and requirements back to local

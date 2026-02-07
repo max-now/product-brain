@@ -30,7 +30,19 @@
       "WebFetch(domain:linear.app)",
       "mcp__claude-flow__browser_open",
       "mcp__claude-flow__github_repo_analyze",
-      "mcp__github__search_code"
+      "mcp__github__search_code",
+      "WebSearch",
+      "WebFetch(domain:googleapis.github.io)",
+      "Bash(gcloud:*)",
+      "Bash(brew:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(sed:*)",
+      "Bash(BIGQUERY_PROJECT=max-sg:*)",
+      "mcp__bigquery__list_dataset_ids",
+      "mcp__bigquery__execute_sql",
+      "mcp__bigquery__list_table_ids",
+      "mcp__bigquery__get_table_info",
+      "ExitPlanMode"
     ],
     "deny": [],
     "ask": []
