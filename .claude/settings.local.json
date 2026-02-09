@@ -42,7 +42,12 @@
       "mcp__bigquery__execute_sql",
       "mcp__bigquery__list_table_ids",
       "mcp__bigquery__get_table_info",
-      "ExitPlanMode"
+      "ExitPlanMode",
+      "mcp__bigquery__search_catalog",
+      "mcp__filesystem__list_directory",
+      "mcp__filesystem__read_text_file",
+      "mcp__filesystem__write_file",
+      "mcp__claude_ai_Linear__list_teams"
     ],
     "deny": [],
     "ask": []

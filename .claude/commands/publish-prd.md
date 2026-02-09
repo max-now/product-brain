@@ -101,6 +101,7 @@ The command works best with PRDs following this structure:
      - state: "Planned"
      - description: Full PRD markdown
      - summary: First 255 chars of problem statement
+     - status: Planned
      - priority: 3 (Medium) or detected from PRD
 ```
 
@@ -118,7 +119,7 @@ The command works best with PRDs following this structure:
    This allows `/sync-prd` to automatically find the project without manual URL input.
 ```
 
-6. **Return project details**
+5. **Return project details**
   - Project URL in Linear
   - Confirmation of settings
   - Link to created project

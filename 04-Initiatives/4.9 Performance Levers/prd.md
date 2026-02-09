@@ -1,14 +1,178 @@
 # Performance Levers
-*Merchant Performance & Delivery Capacity*
+
+## Business Context
+
+**The opportunity:** Merchant revenue is constrained by our inability to systematically diagnose and improve performance. When merchants ask "why is my performance bad?", we have no data-backed answer and no levers to address it at scale.
+
+**Root cause:** We lack instrumentation to measure which factor drives conversion:
+> **Exposure × Relevancy × Monetary Incentive = Conversion**
+
+Without measurement, we can't diagnose problems, test interventions systematically, or optimise at scale.
+
+**This initiative builds measurement + intervention capability** to transform merchant performance from reactive guesswork to systematic optimisation - unlocking operational improvement (Phase 0-3) and commercial CPM monetisation (Phase 4).
+
+**Foundation dependency:**
+- Levers Phase 0 - 3 require [Impression Infrastructure Phase 1] for placement measurement
+- Levers Phase 4 requires [Impression Infrastructure Phase 2 & 3] for commercial delivery
+
+### Levers to test across phases
+| Lever Category | Specific Levers | Impact Area | Phase | Notes |
+| --- | --- | --- | --- | --- |
+| **Exposure & Placement** | Placement-specific ranking control | CTR | 1 | Tests H1, H2 |
+|  | Time-bound visibility campaigns | CTR | 1 | Auto-expiring, no manual cleanup |
+| **Personalisation** | User-based merchant recommendations | CTR + CVR | 2 | Based on transaction history |
+| **Intent-Based Exposure** | Merchants shown based on session intent | CTR | 2 | Search vs browse vs deals vs redeem |
+| **Incentive** | Miles booster campaigns | CVR | 3 | Tests H4; ROI uncertain |
+| **Paid Ads** | CPM/CPC impression packages | Revenue | 4 | Depends on Impression Infrastructure |
+**Not in scope:**
+- User reviews / social proof (not built in-app)
+- How-to-earn guides per merchant (cross-team dependency)
 
 ---
 
-## Strategic Context
+## 2. Problem Decomposition
 
+```
+Revenue Growth
+├── More users (acquisition) — not in scope
+├── More earning channels (supply) — not in scope
+└── Higher conversion on existing channels ← THIS INITIATIVE
+    ├── EXPOSURE: enough impressions? right placements? right rank?
+    ├── RELEVANCY: right merchant to right user? intent-aware?
+    └── INCENTIVE: compelling miles rate? urgency to act?
+```
 
-**Foundation dependency:**
-- Phase 0-3 require [prd.md](./../4.6%20Impression%20Infrastructure/prd.md) for placement measurement
-- Phase 4 requires [prd.md](./../4.6%20Impression%20Infrastructure/prd.md) for commercial delivery
+### Today: Flying blind
+
+**What we have:**
+- Simple ranking = popularity sort + manual BD override (global, not placement-specific)
+- Manual campaign management via Appsmith (no auto-expiry, requires cleanup)
+- No merchant performance diagnostics
+
+**What's missing (the instrumentation gap):**
+- ❌ No impression distribution visibility → can't diagnose exposure problems
+- ❌ No placement-specific metrics → can't correlate placement → conversion
+- ❌ No baseline CTR/CVR per placement → can't measure improvement
+- ❌ No personalisation or intent-based targeting → can't test relevancy
+- ❌ No targeted incentive mechanisms → can't test monetary motivation
+
+**Symptoms in the field:**
+- Merchants: "Why is my performance bad?" → BD has no data-backed answer
+- BD: Manual ranking overrides with no success metrics or auto-expiry
+- Product: Can't validate if exposure, relevancy, or incentive is the bottleneck
+
+### What we're learning (Phase 0 in progress)
+
+**Instrumentation being built:**
+- [prd.md](./../4.6%20Impression%20Infrastructure/prd.md) — tracking impressions, CTR, CVR per merchant per placement
+- [phase-1-experiment.md](./phase-1-experiment.md) — testing H1/H2: does rank position causally affect CTR?
+
+**Data we'll have soon (Phase 0 baselines):**
+- Merchant CTR by placement: [TBD]
+- Impression distribution: high-performers vs under-performers on same placements [TBD]
+- Rank position vs CTR correlation: [TBD]
+
+*Note: These baselines will inform which levers to prioritize in Phase 1-3.*
+
+---
+
+## 3. Hypotheses to Test
+
+Each phase tests one lever in the conversion equation: **Exposure × Relevancy × Incentive = Conversion**
+| Hypothesis | Test | Success = | Phase |
+| --- | --- | --- | --- |
+| **H1: Exposure is the bottleneck** | Impression distribution analysis | Underperformers have significantly fewer impressions than top performers | 0 |
+| **H2: Rank position drives CTR** | A/B test: boost underperformers to top 3 | >5% CTR uplift | 0 - 1 |
+| **H3: Relevancy > raw exposure** | Personalized vs popularity ranking | >30% CTR + >15% CVR uplift | 2 |
+| **H4: Incentives drive incremental CVR** | Miles booster campaigns vs control | >15% CVR uplift with positive ROI | 3 |
+**Testing approach:**
+- Phase 0 validates H1/H2 before building exposure levers (Phase 1). 
+- Phases 2-3 test relevancy and incentive to measure relative contribution. 
+- Results determine optimal lever weightage and production rollout.
+
+---
+
+## 4. Why This Matters / Projected Success Criteria
+
+**Current Opportunity sizing:**
+- Average monthly shop revenue (p180d): 17M MM
+- Average monthly merchant page views (p90d): 690k
+- Average monthly merchant page SWM clicks CTR (p90d): 14.5% (100k)
+- Average monthly merchant page -> SWM user CTR (p90d): 53%
+- Average monthly merchant page -> SWM user CVR (p90d): 40%
+
+**Levers Impact model (conservative estimate):**
+- H1/H2 (Exposure): >15% CTR uplift
+- H3 (Relevancy): >30% CTR + >15% CVR uplift
+- H4 (Incentive): >15% CVR uplift
+
+**Competitive context:**
+- Our advantage: Integrated platform with card spend data
+
+If combined levers impact is lower, this signals either:
+- Wrong levers (real bottleneck is elsewhere: UX, merchant quality, platform value prop)
+- Levers don't combine multiplicatively (interactions between levers neutralize effects)
+
+**Re-evaluation trigger:** If Phase 1-2 combined show <10% uplift for either CTR and CVR, pause Phase 3 and investigate root cause.
+---
+
+## 5. Phased Approach
+
+Each phase tests a hypothesis about lever magnitude. Infrastructure for all levers (exposure, relevancy, incentive) must exist to measure their relative contribution to conversion. Experiments determine optimal weightage and production rollout timing.
+
+| Phase | Lever | Hypothesis | What we build | What we learn | Dependency |
+| --- | --- | --- | --- | --- | --- |
+| **0** | Measurement + Validation | — | Impression tracking infra + ranking experiment | Baseline data; does rank position causally affect CTR? | [prd.md](./../4.6%20Impression%20Infrastructure/prd.md) |
+| **1** | Exposure | H1, H2 | Placement-specific ranking, time-bound campaigns | Does better exposure improve CTR? By how much? | 4.6 Phase 1 ✓ |
+| **2** | Relevancy | H3 | Personalised ranking, intent-based exposure | Does relevancy outperform raw exposure? | 4.6 Phase 1 ✓ |
+| **3** | Incentive | H4 | Miles booster campaigns | Does incentive drive incremental CVR? At what ROI? | 4.6 Phase 1 ✓ |
+| **4** | Monetisation | — | CPI/CPC paid visibility | Can we monetise validated levers? | [prd.md](./../4.6%20Impression%20Infrastructure/prd.md) |
+
+### Phase 0 — Instrumentation & Measurement Foundation
+> **Delivered by:** [Impression Infrastructure Phase 1] 
+
+**Status:** In Progress
+
+Two workstreams already underway:
+- **Impression tracking infrastructure** ([prd.md](./../4.6%20Impression%20Infrastructure/prd.md))
+  - Instrumentation layer to measure impressions, CTR, CVR per merchant per placement
+  - [Impression Infrastructure Phase 1] Required for Phase 1-3 operational levers 
+  - [Impression Infrastructure Phase 2 & 3] Required for Phase 4 commercialisation
+- **Ranking position experiment** ([phase-1-experiment.md](./phase-1-experiment.md))
+  - Tests H1/H2 by measuring if rank position causally affects CTR
+  - Results determine whether Phase 1 is worth building
+
+**What this enables:**
+- ✅ Placement definitions (where merchants appear)
+- ✅ Exposure tracking (when merchants are seen)
+- ✅ Baseline metrics (CTR, CVR by placement)
+- ✅ Attribution of which placements drive conversions
+- ✅ Data foundation for ranking decisions
+
+**Exit criteria:** Baseline impression/CTR/CVR data per placement + statsig results on whether rank boosting improves CTR
+
+**Blocks:** Phase 1 launch
+
+**Note on phasing:** While experiments validate magnitude and ROI before production rollout, Phase 2-3 infrastructure (personalisation, incentives) should be built in parallel. We need all three levers instrumented to measure relative contribution to the conversion equation: `Exposure × Relevancy × Incentive = Conversion`. Experiments determine optimal weightage, not whether to build.
+
+---
+
+## 6. Stakeholders
+
+- **Merchants / Partners** — data-backed performance explanation + actionable levers
+- **BD team** — systematic response to "how do I improve performance?"
+- **Ops team** — SOPs for ranking changes; auto-expiring campaigns
+- **Product & Data** — data to answer: exposure, relevancy, or incentive problem?
+- **Engineering** — clear problem definition and validation criteria before building
+
+---
+
+## 7. Guardrails
+
+- No regression in overall platform CVR
+- Evidence required before progressing phases
+- All interventions measurable and attributable
+- Organic vs paid ranking separated (Phase 4)
 
 ```
 ┌─────────────────────────────────────┐
@@ -36,168 +200,19 @@
 └─────────────────────────────────────┘
 ```
 
----
 
-## Problem Statement
+### Critical questions that lead to our hypotheses
 
-When merchants approach us saying "performance is not good, how can we improve it?", we lack:
-1. **Systematic understanding** of our delivery capacity (impression → conversion rates per placement)
-2. **Levers we can pull** to improve merchant performance in a scalable way
-3. **Operational tooling** to execute improvements consistently across 100+ merchant requests
+These questions frame what we need to learn to build the right levers:
 
-### Current State
-- Ranking defaults to popularity sort + manual BD override (global, not placement-specific)
-- No visibility into which placements drive conversions for which merchant types
-- Manual processes without SOPs lead to inconsistent delivery
-- No systematic response when merchants ask "why is my performance bad?"
-
-### Objective
-Build a **systematic merchant performance improvement capability** that:
-1. **Measures** conversion capacity per placement/session type
-  1. first via Statsig/Sundial
-  2. subsequently via business analytics portal
-2. **Enables levers** to improve CTR and CVR at scale
-3. **Delivers consistently** through operational tooling and clear ownership
-
----
-
-## Levers to Improve Merchant Performance (CTR + CVR)
-
-| Lever Category | Specific Levers | Impact Area | Phase | Notes |
-| --- | --- | --- | --- | --- |
-| **Exposure & Placement** | Merchant ranking allocation on more placements | CTR | 1 |  |
-|  | Placement-specific ranking control | CTR | 1 |  |
-|  | Time-bound visibility campaigns | CTR | 1 |  |
-| **Personalisation** | Personalised merchant recommendations | CTR + CVR | 2 | Based on user behaviour/transaction history |
-| **Intent-Based Exposure** | Show merchants based on session intent (search, browse, redeem) | CTR | 2 | Requires intent surface mapping |
-| **Incentive** | Miles booster campaigns | CVR | 3 | Requires targeted approach; uncertain ROI |
-| **Paid Ads** | CPI/CPC impression packages | CTR | 4 | Dependent on Impression Infrastructure (4.6) |
-| **Education** | How-to-earn guides per merchant | CVR | Future | Cross-team dependency (Marketing) |
-**Not in scope (no current capability):**
-- User reviews / social proof (not built in-app)
-
----
-
-## Goals
-
-1. **Measures** conversion capacity per placement/session type
-2. **Enables levers** to improve CTR and CVR at scale
-3. **Delivers consistently** through operational tooling and clear ownership
-4. Creates systematic response to "how do I improve performance?" at scale
-
----
-
-## Who Is This For
-
-| Stakeholder | What They Get |
-| --- | --- |
-| **Merchants / Partners** | Actionable levers to improve performance, not just "wait and see" |
-| **BD team** | Systematic response to merchant performance inquiries with data-driven actions |
-| **Ops team** | Clear SOPs for executing ranking changes; time-bound campaigns that auto-expire |
-| **Product & Data teams** | Foundation data to decide: is this a ranking, upfunnel, or personalisation problem? |
-
----
-
-## Phasing Overview
-
-This initiative builds **systematic capability to improve merchant performance** through operational and commercial levers.
-| Phase | Focus | Levers Enabled | Dependency |
+| # | Question | Why it matters | How we'll answer |
 | --- | --- | --- | --- |
-| **Phase 0** | **Instrumentation** | Placement metrics, baseline CTR/CVR | [prd.md](./../4.6%20Impression%20Infrastructure/prd.md) |
-| **Phase 1** | Exposure & Placement | Placement-specific ranking, time-bound campaigns | 4.6 Phase 1 ✓ |
-| **Phase 2** | Personalisation + Intent | User-based recommendations + intent-aware exposure | 4.6 Phase 1 ✓ |
-| **Phase 3** | Incentive | Miles boosters (targeted approach) | 4.6 Phase 1 ✓ |
-| **Phase 4** | Paid Ads | CPI/CPC impression packages | [prd.md](./../4.6%20Impression%20Infrastructure/prd.md) |
+| **Q1** | Do underperforming merchants lack exposure, or is exposure wasted? | Determines if we need **distribution** or **relevancy** fixes | Impression vs CTR distribution; compare top vs bottom merchants on same placements |
+| **Q2** | Does rank position causally affect CTR? By how much? | Validates if **placement-specific ranking** is worth building | A/B test: boost under-performers to top 3, measure CTR delta |
+| **Q3** | What is the CTR ceiling per placement? | Sets **realistic improvement targets** per lever | CTR distribution: top decile vs median vs bottom decile |
+| **Q4** | Does personalization beat static ranking? | Tests if **relevancy > raw exposure** | Cohort test: personalized vs popularity sort, measure CTR + CVR |
+| **Q5** | High CTR + low CVR = incentive problem or UX? | Distinguishes **monetary motivation** from **experience issues** | CVR comparison across merchants with similar CTR; drop-off analysis |
+| **Q6** | Do miles boosters drive incremental CVR? At what cost? | Validates **incentive lever ROI** before scaling | Boosted campaigns vs control, measure CVR uplift and cost per conversion |
 
-**Phase PRDs:**
-- [phase-1-prd.md](./phase-1-prd.md)
-- [phase-2-prd.md](./phase-2-prd.md)
-- [phase-3-prd.md](./phase-3-prd.md)
-- [phase-4-prd.md](./phase-4-prd.md)
-
----
-
-## Phase Summaries
-
-### Phase 0 — Instrumentation & Measurement Foundation
-> **Delivered by:** [prd.md](./04-Initiatives/4.6 Impression Infrastructure/prd.md) 
-
-Before we can systematically improve merchant performance, we need:
-- ✅ Placement definitions (where merchants appear)
-- ✅ Exposure tracking (when merchants are seen)
-- ✅ Baseline metrics (CTR, CVR by placement)
-
-**What this enables:** Attribution of which placements drive conversions, data foundation for ranking decisions
-
-**Status:** In Progress (4.6 Phase 1)
-**Blocks:** Phase 1 launch
-
----
-
-## Phase 1 — Exposure & Placement Control
-> **Detailed PRD:** [phase-1-prd.md](./phase-1-prd.md)
-
-Enable **systematic merchant performance improvement** through placement control. Ops gets time-bound campaigns with auto-expiry; BD gets a consistent playbook for merchant inquiries.
-
-**Hypothesis to test:** Placement-specific ranking control will improve merchant CTR by 15-25% by surfacing merchants in high-converting placements where they currently have low visibility.
-
-| Lever | Description | Success Metric |
-| --- | --- | --- |
-| Placement-specific ranking | Control merchant rank per placement (not global) | CTR uplift per placement |
-| Time-bound campaigns | Auto-expiring visibility campaigns | 100% campaigns auto-expire |
-| Campaign dashboard | View active/scheduled/expired campaigns | Ops efficiency |
-
-## Phase 2 — Personalisation & Intent-Based Exposure
-> **Detailed PRD:** [phase-2-prd.md](./phase-2-prd.md)
-
-Enable **user-based merchant recommendations and intent-aware exposure**. Move from "same ranking for everyone" to "relevant ranking per user and session intent."
-
-**Hypothesis to test:** Personalised merchant ranking based on user transaction history and session intent will improve CTR by 20-30% and CVR by 10-15% by showing users merchants they are more likely to engage with.
-
-| Lever | Description | Success Metric |
-| --- | --- | --- |
-| Personalised recommendations | Merchant suggestions based on user transaction history | CTR + CVR uplift |
-| Affinity-based ranking | Adjust ranking based on user-merchant affinity signals | CTR uplift |
-| Intent-based exposure | Show different merchants based on session intent (search, browse, redeem) | CTR uplift |
-
-## Phase 3 — Incentive Levers
-> **Detailed PRD:** [phase-3-prd.md](./phase-3-prd.md)
-
-Enable **targeted incentive mechanisms** (miles boosters) to improve CVR for specific merchant segments. Stack levers: placement + personalisation + incentive.
-
-**Hypothesis to test:** Miles booster campaigns will increase CVR by 25-40% for targeted merchant segments by creating additional purchase motivation, with ROI positive when merchant contribution margin exceeds booster cost.
-
-| Lever | Description | Success Metric |
-| --- | --- | --- |
-| Miles booster campaigns | Temporary bonus miles for specific merchants | CVR uplift |
-| Discounted miles rate | Sell miles to merchant at reduced rate for boosting | CVR uplift |
-
-## Phase 4 — Paid Ads (CPI / CPC)
-> **Detailed PRD:** [phase-4-prd.md](./04-Initiatives/4.9 Performance Levers/phase-4-prd.md) 
-
-Introduce **paid visibility as a pricing layer** on top of understood economics.
-
-**Dependency:** Requires 4.6 Phase 2-3 for:
-- Commercial package framework
-- Delivery pacing & guarantees
-- Merchant reporting infrastructure
-
-**Hypothesis to test:** Merchants will pay $0.10-0.30 per click (CPC) or $2-5 per 1000 impressions (CPI) for guaranteed visibility in high-converting placements, creating a new revenue stream without degrading organic merchant performance.
-
-| Lever | Description | Success Metric |
-| --- | --- | --- |
-| CPI impression packages | Pay per impression for guaranteed visibility | Revenue per impression |
-| CPC click packages | Pay per click for performance-based visibility | Revenue per click |
----
-
-## Cross-Phase Considerations
-
-### What Applies Across All Phases
-- CPA metrics (CTR, CVR) remain primary success signals
-- No paid placement logic influences conversion attribution until Phase 4
-- All levers should be measurable and attributable
-
-### Guardrails
-- No regression in overall platform CVR
-- Clear separation between organic and paid ranking (when Phase 4 launches)
-- Systematic approach over ad-hoc solutions
+**From questions to hypotheses:**
+These questions translate directly into testable hypotheses (Section 3) that each phase validates before building production levers.

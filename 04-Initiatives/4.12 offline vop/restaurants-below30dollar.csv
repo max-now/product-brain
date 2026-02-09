@@ -1,0 +1,37 @@
+# nimbalyst: {"hasHeaders":true,"headerRowCount":1,"frozenColumnCount":0}
+merchant_name,category,number_of_transactions,total_spend,average_spend,median_spend,lunch_or_dinner
+XiabuXiabu - Lazada One,Restaurant,271,19373.25,71.49,29.83,Lunch
+8 Korean BBQ (The Central),Restaurant,285,22512.47,78.99,18.88,Lunch
+Aston's Specialties,Restaurant,288,27097.09,94.09,28,Lunch
+COCA at Suntec,Restaurant,406,20735.43,51.07,8.3,Lunch
+Gyu-Kaku (Marina Square),Restaurant,429,25808.9,60.16,18.7,Lunch
+Mikoto Singapore,Restaurant,439,48138.54,109.65,23.99,Lunch
+Timbre Signatures,Restaurant,451,27223.37,60.36,29.1,Lunch
+Thachang (Bugis Junction),Restaurant,551,24772.71,44.96,26,Lunch
+The Coconut Club,Restaurant,565,29848.91,52.83,16.1,Lunch
+PS.Cafe Marina Bay Sands,Cafe,612,35061.8,57.29,8.9,Lunch
+Boon Tong Kee,Restaurant,618,27148.91,43.93,25.4,Lunch
+Raffles Courtyard,Restaurant,675,32247.95,47.77,9.9,Lunch
+PS.Cafe Great World City,Cafe,704,22437.59,31.87,12,Lunch
+Waa Cow! (Marina One),Restaurant,743,19430.86,26.15,9.8,Lunch
+En Sushi,Restaurant,781,27648.57,35.4,24.58,Lunch
+Una Una (Bugis+),Restaurant,854,30133.77,35.29,12.9,Lunch
+Cafe Oriental,Cafe,863,38114.71,44.17,26.86,Lunch
+Chicken Up,Fast Food,902,24901.41,27.61,12,Lunch
+Jewel Coffee,Cafe,956,41590.98,43.51,7.94,Lunch
+Una Una VivoCity,Restaurant,968,43187.29,44.61,9.1,Lunch
+elemen (Millenia Walk),Restaurant,1164,40060.33,34.42,14.5,Lunch
+Aburi-EN (Vivo City),Restaurant,1498,67328.55,44.95,27.46,Lunch
+Kiwami (Chinatown Point),Fast Food,1555,28022.66,18.02,7.09,Lunch
+Bertsica Co Pte Ltd,Restaurant,2002,107980.64,53.94,15.5,Lunch
+Shake Shack,Fast Food,2193,59466.7,27.12,20.9,Lunch
+Food Junction,Fast Food,2292,28750.4,12.54,8.3,Lunch
+Guzman Y Gomez,Fast Food,2767,42576.82,15.39,13.15,Lunch
+Tiong Bahru Bakery,Cafe,3433,66587.56,19.4,11,Lunch
+Moon Juice Pte Ltd,Restaurant,3496,128530.13,36.76,5.6,Lunch
+Beyond Pancakes,Cafe,3723,30971.48,8.32,2.4,Lunch
+Boeuf Singapore,Fast Food,7386,78818.66,10.67,1.9,Lunch
+Google Wallet,Fast Food,8244,116753.37,14.16,6.98,Lunch
+Toast Box - Mlbm,Cafe,9458,67384.8,7.12,4.8,Lunch
+Asusual Pte Ltd,Restaurant,12094,4830007.48,399.37,21.6,Lunch
+Senshi Pte. Ltd.,Restaurant,27446,735011.78,26.78,8.79,Lunch
